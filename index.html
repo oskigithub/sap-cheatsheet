@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAP CheatSheet</title>
+<style>
+:root{--bg:#f4f5f7;--fg:#111827;--mut:#6b7280;--card:#fff;--bd:#d5d9df;--sb:#c3c9d1;--mm:#2563eb;--sd:#16a34a;--fi:#d97706;--aa:#7c3aed;--co:#0891b2;--pp:#dc2626;--pm:#db2777;--qm:#65a30d;--it:#475569;--grc:#0d9488;--hr:#4f46e5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d10;--fg:#e8eaed;--mut:#98a2ae;--card:#13161b;--bd:#262b33;--sb:#394049;--mm:#60a5fa;--sd:#4ade80;--fi:#fbbf24;--aa:#a78bfa;--co:#22d3ee;--pp:#f87171;--pm:#f472b6;--qm:#a3e635;--it:#94a3b8;--grc:#2dd4bf;--hr:#818cf8}}
+:root[data-theme="dark"]{--bg:#0b0d10;--fg:#e8eaed;--mut:#98a2ae;--card:#13161b;--bd:#262b33;--sb:#394049;--mm:#60a5fa;--sd:#4ade80;--fi:#fbbf24;--aa:#a78bfa;--co:#22d3ee;--pp:#f87171;--pm:#f472b6;--qm:#a3e635;--it:#94a3b8;--grc:#2dd4bf;--hr:#818cf8}
+*{box-sizing:border-box}
+body{margin:0 auto;max-width:1360px;background:var(--bg);color:var(--fg);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;padding:12px 24px;height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px}
+h1{font-size:18px;margin:0}
+.sep{width:1px;background:var(--bd);margin:0 4px;align-self:stretch}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.bar{display:flex;flex:1 1 360px;flex-wrap:wrap;gap:8px}
+.frame{position:relative;flex:1;min-height:0;display:flex;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.srch{position:relative;flex:1 1 200px;display:block}
+.srch>svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--mut);pointer-events:none}
+#qx{display:none;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:26px;height:26px;border:0;border-radius:50%;background:none;color:var(--mut);cursor:pointer;padding:0;align-items:center;justify-content:center}
+#qx:hover{background:var(--bd);color:var(--fg)}
+#qx svg{width:14px;height:14px}
+input{width:100%;padding:8px 34px 8px 34px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);font:inherit}
+button.chip{padding:6px 12px;border:1px solid var(--bd);border-radius:999px;background:var(--card);color:var(--fg);font:inherit;cursor:pointer}
+button.chip.on{background:var(--fg);color:var(--bg)}
+.map{flex:1;min-width:0;overflow:auto;padding-right:340px;scrollbar-width:thin;scrollbar-color:var(--sb) transparent}
+.map::-webkit-scrollbar,#det::-webkit-scrollbar{width:10px;height:10px}
+.map::-webkit-scrollbar-track,#det::-webkit-scrollbar-track,.map::-webkit-scrollbar-corner{background:transparent}
+.map::-webkit-scrollbar-thumb,#det::-webkit-scrollbar-thumb{background:var(--sb);border-radius:999px;border:3px solid transparent;background-clip:content-box}
+.map::-webkit-scrollbar-thumb:hover,#det::-webkit-scrollbar-thumb:hover{background:var(--mut);background-clip:content-box}
+#s{display:block;margin:0 48px 0 auto;width:762px;max-width:none;height:auto}
+.n{cursor:pointer;transition:opacity .15s}
+.n rect{fill:var(--card)}
+.n text{fill:var(--fg);text-anchor:middle}
+.n .t{font-weight:700;font-size:13px}
+.n .d{fill:var(--mut);font-size:9px}
+.n.sel rect{fill:var(--bd)}
+.e{fill:none;stroke:var(--bd);stroke-width:1.5}
+.e.hi{stroke:var(--fg);stroke-width:2.5}
+.e.x{stroke:var(--fg);stroke-width:2;stroke-dasharray:5 4}
+#det{visibility:hidden;position:absolute;top:0;bottom:0;right:12px;width:340px;overflow:auto;background:var(--card);border-left:1px solid var(--bd);padding:16px 18px;scrollbar-width:thin;scrollbar-color:var(--sb) transparent}
+#dx{position:absolute;top:6px;right:8px;border:0;background:none;color:var(--mut);font-size:22px;line-height:1;cursor:pointer}
+#det.on{visibility:visible}
+#nores{display:none;position:absolute;top:10px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--mut);pointer-events:none}
+@media (max-width:760px){.frame{flex-direction:column}.map{padding-right:0}#det{display:none;position:relative;top:auto;bottom:auto;right:auto;width:auto;max-height:45%;border-left:0;border-top:1px solid var(--bd)}#det.on{display:block}}
+.k{display:inline-block;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:1px 7px;margin:2px 3px 2px 0;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+a.l{color:inherit;font-weight:600;cursor:pointer;text-decoration:underline}
+.mut{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="top"><h1>SAP CheatSheet</h1>
+<div class="bar">
+  <label class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" placeholder="Buscar módulo, tabla, transacción o campo (ej: BELNR, ME21N)"><button id="qx" type="button" aria-label="Borrar búsqueda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></label>
+  <button class="chip on" data-v="tab">Tablas</button>
+  <button class="chip" data-v="tx">Transacciones</button>
+  <span class="sep"></span>
+  <button class="chip on" data-s="ecc">ECC</button>
+  <button class="chip" data-s="s4">S/4HANA</button>
+</div></div>
+<div class="frame"><div class="map"><svg id="s"></svg></div><div id="nores"></div><div id="det"><button id="dx" aria-label="Cerrar">×</button><div id="dc"></div></div></div>
+<div class="mut" id="ver" style="font-size:12px;margin:0;display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap"><span>SAP es marca registrada de SAP SE.</span><span>Versión 1.0 · 19/10/2026</span></div>
+<script>
+const MODS=[
+{id:"IT",name:"IT / BASIS",lab:"IT / BASIS",d:"Seguridad y administración",i:"server"},
+{id:"GRC",name:"GRC Access Control",lab:"GRC",d:"Riesgos y SoD",i:"scale"},
+{id:"MM",name:"Gestión de materiales",d:"Compras e inventario",i:"box"},
+{id:"SD",name:"Ventas y distribución",d:"Ventas y facturación",i:"coin"},
+{id:"FI",name:"Finanzas",d:"Contabilidad financiera",i:"book"},
+{id:"AA",name:"Activos fijos",d:"Alta, depreciación y baja",i:"bldg"},
+{id:"CO",name:"Controlling",d:"Costos y rentabilidad",i:"pie"},
+{id:"PP",name:"Planificación de producción",d:"Fabricación y órdenes",i:"fact"},
+{id:"PM",name:"Mantenimiento de planta",d:"Equipos y mantenimiento",i:"wrench"},
+{id:"QM",name:"Gestión de calidad",d:"Inspección de calidad",i:"check"},
+{id:"HR",name:"Recursos humanos",d:"Personal y nómina",i:"people"}
+];
+// id, módulo, descripción, claves, padre (tabla o módulo)
+const T0=[
+["LFA1","MM","Maestro de proveedores","MANDT,LIFNR","MM"],
+["MARA","MM","Maestro de materiales","MANDT,MATNR","MM"],
+["MARC","MM","Material por centro","MANDT,MATNR,WERKS","MARA"],
+["MARD","MM","Stock por almacén","MANDT,MATNR,WERKS,LGORT","MARC"],
+["EKKO","MM","Cabecera pedido de compra","MANDT,EBELN","MM"],
+["EKPO","MM","Posición pedido de compra","MANDT,EBELN,EBELP","EKKO"],
+["EKET","MM","Repartos","MANDT,EBELN,EBELP,ETENR","EKPO"],
+["EKBE","MM","Historial del pedido","EBELN,EBELP,ZEKKN,VGABE,GJAHR,BELNR,BUZEI","EKPO"],
+["MKPF","MM","Cabecera doc. material","MANDT,MBLNR,MJAHR","MM"],
+["MSEG","MM","Posición doc. material","MANDT,MBLNR,MJAHR,ZEILE","MKPF"],
+["RBKP","MM","Cabecera factura (MIRO)","MANDT,BELNR,GJAHR","MM"],
+["RSEG","MM","Posición factura (MIRO)","MANDT,BELNR,GJAHR,BUZEI","RBKP"],
+["KNA1","SD","Maestro de clientes","MANDT,KUNNR","SD"],
+["VBAK","SD","Cabecera pedido de venta","MANDT,VBELN","SD"],
+["VBAP","SD","Posición pedido de venta","MANDT,VBELN,POSNR","VBAK"],
+["VBFA","SD","Flujo de documentos","MANDT,VBELV,POSNV,VBELN,POSNN,VBTYP_N","VBAK"],
+["LIKP","SD","Cabecera de entrega","MANDT,VBELN","SD"],
+["LIPS","SD","Posición de entrega","MANDT,VBELN,POSNR","LIKP"],
+["VBRK","SD","Cabecera factura de venta","MANDT,VBELN","SD"],
+["VBRP","SD","Posición factura de venta","MANDT,VBELN,POSNR","VBRK"],
+["BKPF","FI","Cabecera doc. contable","MANDT,BUKRS,BELNR,GJAHR","FI"],
+["BSEG","FI","Posición doc. contable","MANDT,BUKRS,BELNR,GJAHR,BUZEI","BKPF"],
+["ANLA","AA","Maestro de activo fijo","MANDT,BUKRS,ANLN1,ANLN2","AA"],
+["ANLB","AA","Datos de depreciación","MANDT,BUKRS,ANLN1,ANLN2,AFABE","ANLA"],
+["ANLZ","AA","Datos dependientes del tiempo","MANDT,BUKRS,ANLN1,ANLN2,BDATU","ANLA"],
+["ANLC","AA","Valores del activo por ejercicio","MANDT,BUKRS,ANLN1,ANLN2,GJAHR,AFABE,ZUJHR,ZUCOD","ANLA"],
+["ANEK","AA","Cabecera doc. de activo","MANDT,BUKRS,ANLN1,ANLN2,GJAHR,LNRAN","AA"],
+["ANEP","AA","Posición doc. de activo","MANDT,BUKRS,ANLN1,ANLN2,GJAHR,LNRAN,AFABE","ANEK"],
+["CSKS","CO","Maestro centros de coste","MANDT,KOKRS,KOSTL,DATBI","CO"],
+["CSKA","CO","Clases de coste","MANDT,KTOPL,KSTAR","CO"],
+["CEPC","CO","Centros de beneficio","MANDT,PRCTR,DATBI,KOKRS","CO"],
+["COBK","CO","Cabecera documento CO","MANDT,KOKRS,BELNR","CO"],
+["COEP","CO","Posición documento CO","MANDT,KOKRS,BELNR,BUZEI","COBK"],
+["STKO","PP","Cabecera lista de materiales","MANDT,STLTY,STLNR,STLAL,STKOZ","PP"],
+["STPO","PP","Posición lista de materiales","MANDT,STLTY,STLNR,STLKN,STPOZ","STKO"],
+["MAST","PP","Material - lista de materiales","MANDT,MATNR,WERKS,STLAN,STLNR,STLAL","PP"],
+["PLKO","PP","Cabecera hoja de ruta","MANDT,PLNTY,PLNNR,PLNAL,ZAEHL","PP"],
+["PLPO","PP","Operación hoja de ruta","MANDT,PLNTY,PLNNR,PLNKN,ZAEHL","PLKO"],
+["MAPL","PP","Material - hoja de ruta","MANDT,PLNTY,PLNNR,PLNAL,ZKNNR","PP"],
+["AUFK","PP","Maestro de órdenes","MANDT,AUFNR","PP"],
+["AFKO","PP","Cabecera orden de producción","MANDT,AUFNR","AUFK"],
+["AFPO","PP","Posición orden de producción","MANDT,AUFNR,POSNR","AFKO"],
+["AFVC","PP","Operación de la orden","MANDT,AUFPL,APLZL","AFKO"],
+["RESB","PP","Reservas y necesidades","MANDT,RSNUM,RSPOS,RSART","AFKO"],
+["EQUI","PM","Maestro de equipos","MANDT,EQUNR","PM"],
+["EQUZ","PM","Equipo: datos temporales","MANDT,EQUNR,DATBI,EQLFN","EQUI"],
+["IFLO","PM","Ubicación técnica","MANDT,TPLNR","PM"],
+["ILOA","PM","Datos de ubicación y cuentas","MANDT,ILOAN","PM"],
+["AFIH","PM","Cabecera orden de mantenimiento","MANDT,AUFNR","PM"],
+["QMEL","PM","Aviso (mantenimiento/calidad)","MANDT,QMNUM","PM"],
+["QALS","QM","Lote de inspección","MANDT,PRUEFLOS","QM"],
+["QAVE","QM","Decisión de empleo","MANDT,PRUEFLOS","QALS"],
+["QAMV","QM","Características de inspección","MANDT,PRUEFLOS,VORNR,MERKNR","QALS"],
+["USR02","IT","Datos de logon de usuario","MANDT,BNAME","IT"],
+["USR21","IT","Usuario: clave de dirección","MANDT,BNAME","USR02"],
+["USR04","IT","Perfiles del usuario","MANDT,BNAME","USR02"],
+["AGR_USERS","IT","Roles asignados a usuarios","MANDT,AGR_NAME,UNAME,FROM_DAT,TO_DAT","USR02"],
+["AGR_DEFINE","IT","Definición de roles","MANDT,AGR_NAME","IT"],
+["AGR_1251","IT","Roles: valores de autorización","MANDT,AGR_NAME,COUNTER","AGR_DEFINE"],
+["TOBJ","IT","Objetos de autorización","OBJCT","IT"],
+["CDHDR","IT","Cabecera doc. de modificación","MANDANT,OBJECTCLAS,OBJECTID,CHANGENR","IT"],
+["CDPOS","IT","Posición doc. de modificación","MANDANT,OBJECTCLAS,OBJECTID,CHANGENR,TABNAME,TABKEY,FNAME,CHNGIND","CDHDR"],
+["T000","IT","Mandantes","MANDT","IT"],
+["TSTC","IT","Códigos de transacción","TCODE","IT"],
+["TBTCO","IT","Cabecera de jobs de fondo","JOBNAME,JOBCOUNT","IT"],
+["TBTCP","IT","Pasos de jobs de fondo","JOBNAME,JOBCOUNT,STEPCOUNT","TBTCO"],
+["RFCDES","IT","Destinos RFC","RFCDEST","IT"],
+["E070","IT","Cabecera de órdenes de transporte","TRKORR","IT"],
+["E071","IT","Objetos de la orden de transporte","TRKORR,AS4POS","E070"],
+["DD02L","IT","Tablas del diccionario ABAP","TABNAME,AS4LOCAL,AS4VERS","IT"],
+["DD03L","IT","Campos de tablas","TABNAME,FIELDNAME,AS4LOCAL,AS4VERS,POSITION","DD02L"],
+["TADIR","IT","Directorio de objetos","PGMID,OBJECT,OBJ_NAME","IT"],
+["TRDIR","IT","Programas ABAP","NAME","IT"],
+["ADRP","IT","Persona: nombre y apellido","CLIENT,PERSNUMBER,DATE_FROM,NATION","USR21"],
+["USER_ADDRS","IT","Vista: nombre, apellido, puesto","BNAME","USR21"],
+["V_USERNAME","IT","Vista: nombre por usuario SAP","BNAME","USR21"],
+["DEVACCESS","IT","Claves de desarrollador","MANDT,UNAME","USR02"],
+["UST04","IT","Perfiles asignados al usuario","MANDT,BNAME,PROFILE","USR02"],
+["UST10C","IT","Perfiles y perfiles hijos","MANDT,PROFN,AKTPS,SUBPROF","IT"],
+["UST10S","IT","Autorizaciones por perfil","MANDT,PROFN,AKTPS,OBJCT,AUTH","UST10C"],
+["UST12","IT","Detalle de autorizaciones","MANDT,OBJCT,AUTH,AKTPS,FIELD","UST10S"],
+["USR11","IT","Descripción del perfil","MANDT,LANGU,PROFN,AKTPS","IT"],
+["USR13","IT","Descripción de la autorización","MANDT,LANGU,OBJCT,AUTH,AKTPS","IT"],
+["USR40","IT","Control de contraseñas","MANDT,WORD","IT"],
+["AGR_AGRS","IT","Roles compuestos","MANDT,AGR_NAME,CHILD_AGR","AGR_DEFINE"],
+["AGR_PROF","IT","Roles y perfiles","MANDT,AGR_NAME,PROFILE","AGR_DEFINE"],
+["USOBT","IT","Objetos por transacción","NAME,TYPE,OBJECT","IT"],
+["USOBT_C","IT","Autorizaciones por transacción","MANDT,NAME,TYPE,OBJECT,FIELD","TSTC"],
+["TSTCP","IT","Parámetros de transacciones","TCODE","TSTC"],
+["DD09L","IT","Opciones técnicas (log activo)","TABNAME,AS4LOCAL,AS4VERS","DD02L"],
+["TDDAT","IT","Grupo de autorización de tabla","TABNAME","DD02L"],
+["D010TAB","IT","Programa y tablas usadas","MASTER,TABNAME","TRDIR"],
+["D010INC","IT","Programas e includes","MASTER,INCLUDE","TRDIR"],
+["DBTABLOG","IT","Log de cambios en tablas","ver SE11","IT"],
+["SE16N_CD_KEY","IT","Log SE16N: cabecera","ver SE11","IT"],
+["SE16N_CD_DATA","IT","Log SE16N: datos","ver SE11","SE16N_CD_KEY"],
+["TJ20","IT","Esquemas de status","MANDT,STSMA","IT"],
+["TJ30","IT","Status de usuario","MANDT,STSMA,ESTAT","TJ20"],
+["GRACRULESET","GRC","Rulesets","MANDT,RULESETID","GRC"],
+["GRACSODRISK","GRC","Riesgos SoD","MANDT,RISKID","GRC"],
+["GRACSODRISKRS","GRC","Riesgos por ruleset","MANDT,RISKID,RULESETID","GRACSODRISK"],
+["GRACSODRISKT","GRC","Riesgos SoD: textos","ver SE11","GRACSODRISK"],
+["GRACSODRISKFUNC","GRC","Funciones por riesgo","MANDT,RISKID,FUNCTID","GRACSODRISK"],
+["GRACFUNC","GRC","Funciones","MANDT,FUNCTID","GRC"],
+["GRACFUNCACT","GRC","Acciones de la función","MANDT,FUNCTID,ACTION","GRACFUNC"],
+["GRACFUNCPRM","GRC","Permisos de la función","CONNECTOR,SEQUENCE,RESOURCEID","GRACFUNCACT"],
+["GRACFFLOG","GRC","Log de Firefighter ID","ver SE11","GRC"],
+["T001","FI","Sociedades (company codes)","MANDT,BUKRS","FI"],
+["T003","FI","Clases de documento","MANDT,BLART","FI"],
+["T003T","FI","Textos de clases de documento","MANDT,SPRAS,BLART","T003"],
+["MARM","MM","Unidades de medida del material","MANDT,MATNR,MEINH","MARA"],
+["GRACFCHANGELOG","GRC","Log de cambios de funciones","ver SE11","GRC"],
+["GRACACTUSAGE","GRC","Uso de acciones por usuario","ver SE11","GRC"],
+["PA0001","HR","Asignación organizativa","MANDT,PERNR,SUBTY,OBJPS,SPRPS,ENDDA,BEGDA,SEQNR","HR"],
+["PA0000","HR","Acciones de personal","MANDT,PERNR,SUBTY,OBJPS,SPRPS,ENDDA,BEGDA,SEQNR","PA0001"],
+["PA0002","HR","Datos personales","MANDT,PERNR,SUBTY,OBJPS,SPRPS,ENDDA,BEGDA,SEQNR","PA0001"],
+["PA0008","HR","Retribución básica","MANDT,PERNR,SUBTY,OBJPS,SPRPS,ENDDA,BEGDA,SEQNR","PA0001"],
+["PA0105","HR","Comunicación (usuario SAP)","MANDT,PERNR,SUBTY,OBJPS,SPRPS,ENDDA,BEGDA,SEQNR","PA0001"],
+["T528T","HR","Textos de puestos","MANDT,SPRSL,OTYPE,PLANS,ENDDA","PA0001"]
+];
+// relaciones de datos: tabla, tabla, campo de unión
+const E0=[
+["EKKO","EKPO","EBELN"],["EKPO","EKET","EBELN + EBELP"],["EKPO","EKBE","EBELN + EBELP"],["MKPF","MSEG","MBLNR + MJAHR"],["RBKP","RSEG","BELNR + GJAHR"],
+["VBAK","VBAP","VBELN"],["VBAK","VBFA","VBELV"],["LIKP","LIPS","VBELN"],["VBRK","VBRP","VBELN"],["BKPF","BSEG","BUKRS + BELNR + GJAHR"],
+["EKKO","LFA1","LIFNR"],["EKPO","MARA","MATNR"],["EKBE","MSEG","BELNR/GJAHR/BUZEI (VGABE=1)"],["EKBE","RSEG","BELNR/GJAHR/BUZEI (VGABE=2)"],
+["RBKP","BKPF","AWKEY"],["VBAK","KNA1","KUNNR"],["VBAP","LIPS","VGBEL/VGPOS"],["LIPS","VBRP","VGBEL/VGPOS"],["VBRK","BKPF","AWKEY"],["VBAP","MARA","MATNR"],
+["MARA","MARC","MATNR"],["MARC","MARD","MATNR + WERKS"],
+["ANLA","ANLB","BUKRS + ANLN1 + ANLN2"],["ANLA","ANLZ","BUKRS + ANLN1 + ANLN2"],["ANLA","ANLC","BUKRS + ANLN1 + ANLN2"],["ANEK","ANEP","BUKRS + ANLN1 + ANLN2 + GJAHR + LNRAN"],
+["ANLA","ANEK","BUKRS + ANLN1 + ANLN2"],["ANEK","BKPF","BUKRS + BELNR + GJAHR"],
+["COBK","COEP","KOKRS + BELNR"],["CSKS","COEP","OBJNR"],["CSKA","COEP","KSTAR"],["AUFK","COEP","OBJNR"],["COBK","BKPF","REFBN + REFGJ"],["CEPC","CSKS","PRCTR"],
+["STKO","STPO","STLTY + STLNR"],["MAST","STKO","STLNR + STLAL"],["MAST","MARA","MATNR"],["PLKO","PLPO","PLNTY + PLNNR"],["MAPL","PLKO","PLNTY + PLNNR + PLNAL"],["MAPL","MARA","MATNR"],
+["AUFK","AFKO","AUFNR"],["AFKO","AFPO","AUFNR"],["AFKO","AFVC","AUFPL"],["AFKO","RESB","RSNUM"],["AFPO","MARA","MATNR"],["RESB","MARA","MATNR"],
+["EQUI","EQUZ","EQUNR"],["EQUZ","ILOA","ILOAN"],["IFLO","ILOA","ILOAN"],["AFIH","AUFK","AUFNR"],["AFIH","EQUI","EQUNR"],["AFIH","QMEL","QMNUM"],
+["QALS","QAVE","PRUEFLOS"],["QALS","QAMV","PRUEFLOS"],["QALS","MARA","MATNR"],
+["USR02","USR21","BNAME"],["USR02","USR04","BNAME"],["USR02","AGR_USERS","BNAME = UNAME"],["AGR_DEFINE","AGR_1251","AGR_NAME"],["AGR_USERS","AGR_DEFINE","AGR_NAME"],["AGR_1251","TOBJ","OBJECT = OBJCT"],
+["CDHDR","CDPOS","OBJECTCLAS + OBJECTID + CHANGENR"],["TBTCO","TBTCP","JOBNAME + JOBCOUNT"],["E070","E071","TRKORR"],["DD02L","DD03L","TABNAME"],["TADIR","TRDIR","OBJ_NAME = NAME"],["TSTC","TRDIR","PGMNA = NAME"],
+["USR21","ADRP","PERSNUMBER"],["USR21","USER_ADDRS","BNAME"],["USR21","V_USERNAME","BNAME"],["USR02","DEVACCESS","BNAME = UNAME"],["USR02","UST04","BNAME"],
+["UST10C","UST10S","SUBPROF = PROFN"],["UST10S","UST12","OBJCT + AUTH"],["UST04","UST10C","PROFILE = PROFN"],
+["AGR_DEFINE","AGR_AGRS","AGR_NAME"],["AGR_DEFINE","AGR_PROF","AGR_NAME"],["AGR_PROF","UST04","PROFILE"],
+["TSTC","TSTCP","TCODE"],["TSTC","USOBT_C","TCODE = NAME"],["USOBT","USOBT_C","NAME + TYPE + OBJECT"],["USOBT_C","TOBJ","OBJECT = OBJCT"],
+["DD02L","DD09L","TABNAME"],["DD02L","TDDAT","TABNAME"],["TRDIR","D010TAB","NAME = MASTER"],["TRDIR","D010INC","NAME = MASTER"],
+["SE16N_CD_KEY","SE16N_CD_DATA","clave del log"],["TJ20","TJ30","STSMA"],
+["T001","BKPF","BUKRS"],["T003","T003T","BLART"],["T003","BKPF","BLART"],["MARA","MARM","MATNR"],
+["GRACSODRISK","GRACSODRISKRS","RISKID"],["GRACSODRISK","GRACSODRISKT","RISKID"],["GRACSODRISK","GRACSODRISKFUNC","RISKID"],["GRACFUNC","GRACFUNCACT","FUNCTID"],["GRACFUNCACT","GRACFUNCPRM","FUNCTID + ACTION"],
+["GRACRULESET","GRACSODRISKRS","RULESETID"],["GRACFUNC","GRACSODRISKFUNC","FUNCTID"],
+["PA0001","PA0000","PERNR"],["PA0001","PA0002","PERNR"],["PA0001","PA0008","PERNR"],["PA0001","PA0105","PERNR"],["PA0001","T528T","PLANS"],["PA0105","USR02","USRID = BNAME (subtipo 0001)"]
+];
+// transacción | módulo | descripción | proceso | tablas que toca
+const TX0=[
+"MM01|MM|Crear material|Maestros|MARA,MARC","MM02|MM|Modificar material|Maestros|MARA,MARC","MM03|MM|Visualizar material|Maestros|MARA,MARC",
+"XK01|MM|Crear proveedor (S/4: BP)|Maestros|LFA1","XK02|MM|Modificar proveedor (S/4: BP)|Maestros|LFA1","XK03|MM|Visualizar proveedor (S/4: BP)|Maestros|LFA1",
+"ME21N|MM|Crear pedido de compra|P2P|EKKO,EKPO,EKET","ME22N|MM|Modificar pedido de compra|P2P|EKKO,EKPO,EKET","ME23N|MM|Visualizar pedido de compra|P2P|EKKO,EKPO,EKET|Para ver la liberación (estrategia de liberación) de la OC.",
+"ME2N|MM|Pedidos por número y seguimiento|P2P|EKKO,EKPO,EKBE","ME2L|MM|Pedidos por proveedor|P2P|EKKO,EKPO,LFA1",
+"MIGO|MM|Entrada/salida de mercancías|P2P|MKPF,MSEG,EKBE","MIRO|MM|Registrar factura de proveedor|P2P|RBKP,RSEG,EKBE","MIR4|MM|Visualizar factura de proveedor|P2P|RBKP,RSEG",
+"MB51|MM|Lista de documentos de material|Inventario|MKPF,MSEG","MMBE|MM|Stock disponible por material|Inventario|MARD","MB52|MM|Stock por almacén|Inventario|MARD",
+"VD01|SD|Crear cliente (S/4: BP)|Maestros|KNA1","VD02|SD|Modificar cliente (S/4: BP)|Maestros|KNA1","VD03|SD|Visualizar cliente (S/4: BP)|Maestros|KNA1",
+"VA01|SD|Crear pedido de venta|O2C|VBAK,VBAP","VA02|SD|Modificar pedido de venta|O2C|VBAK,VBAP","VA03|SD|Visualizar pedido y flujo de documentos|O2C|VBAK,VBAP,VBFA","VA05|SD|Lista de pedidos de venta|O2C|VBAK,VBAP",
+"VL01N|SD|Crear entrega|O2C|LIKP,LIPS","VL02N|SD|Modificar entrega / salida de mercancías|O2C|LIKP,LIPS","VL03N|SD|Visualizar entrega|O2C|LIKP,LIPS",
+"VF01|SD|Crear factura de venta|O2C|VBRK,VBRP,BKPF","VF02|SD|Modificar factura de venta|O2C|VBRK,VBRP","VF03|SD|Visualizar factura de venta|O2C|VBRK,VBRP","VF04|SD|Lista de facturación pendiente|O2C|VBAK,LIKP",
+"FB01|FI|Contabilizar documento|R2R|BKPF,BSEG","FB02|FI|Modificar documento contable|R2R|BKPF,BSEG","FB03|FI|Visualizar documento contable|R2R|BKPF,BSEG|Workflow › Resumen de workflow: muestra los aprobadores del documento.",
+"FB60|FI|Factura de proveedor (FI)|P2P|BKPF,BSEG,LFA1","FB70|FI|Factura de cliente (FI)|O2C|BKPF,BSEG,KNA1",
+"FBL1N|FI|Partidas individuales de proveedor|P2P|BSEG,LFA1","FBL5N|FI|Partidas individuales de cliente|O2C|BSEG,KNA1",
+"FAGLL03|FI|Partidas individuales de cuenta de mayor|R2R|BKPF,BSEG","FS10N|FI|Saldos de cuentas de mayor|R2R|BSEG","F110|FI|Pago automático|P2P|BKPF,BSEG",
+"AS01|AA|Crear activo fijo|Maestros|ANLA,ANLB,ANLZ","AS02|AA|Modificar activo fijo|Maestros|ANLA,ANLB,ANLZ","AS03|AA|Visualizar activo fijo|Maestros|ANLA,ANLB,ANLZ",
+"AW01N|AA|Explorador de activos (valores)|A2R|ANLA,ANLC","ABZON|AA|Alta de activo con contrapartida automática|A2R|ANEK,ANEP,ANLC","F-90|AA|Alta de activo desde factura de proveedor|A2R|ANEK,ANEP,BKPF",
+"ABAVN|AA|Baja de activo por desguace|A2R|ANEK,ANEP","AFAB|AA|Ejecución de depreciación|A2R|ANLC,ANEK,ANEP,BKPF",
+"KS01|CO|Crear centro de coste|Maestros|CSKS","KS02|CO|Modificar centro de coste|Maestros|CSKS","KS03|CO|Visualizar centro de coste|Maestros|CSKS",
+"KE51|CO|Crear centro de beneficio|Maestros|CEPC","KE53|CO|Visualizar centro de beneficio|Maestros|CEPC",
+"KO01|CO|Crear orden interna|Maestros|AUFK","KO02|CO|Modificar orden interna|Maestros|AUFK","KO03|CO|Visualizar orden interna|Maestros|AUFK",
+"KSB1|CO|Partidas reales de centro de coste|Costos|COBK,COEP,CSKS","KOB1|CO|Partidas reales de orden|Costos|COBK,COEP,AUFK",
+"CS01|PP|Crear lista de materiales|Maestros|MAST,STKO,STPO","CS02|PP|Modificar lista de materiales|Maestros|MAST,STKO,STPO","CS03|PP|Visualizar lista de materiales|Maestros|MAST,STKO,STPO",
+"CA01|PP|Crear hoja de ruta|Maestros|MAPL,PLKO,PLPO","CA03|PP|Visualizar hoja de ruta|Maestros|MAPL,PLKO,PLPO",
+"CO01|PP|Crear orden de producción|Producción|AUFK,AFKO,AFPO,AFVC,RESB","CO02|PP|Modificar orden de producción|Producción|AUFK,AFKO,AFPO,AFVC,RESB","CO03|PP|Visualizar orden de producción|Producción|AUFK,AFKO,AFPO,AFVC,RESB",
+"CO15|PP|Confirmar orden de producción|Producción|AFKO,AFVC","COOIS|PP|Información de órdenes|Producción|AUFK,AFKO,AFPO","MD04|PP|Lista de stock y necesidades|Producción|RESB,MARD",
+"IE01|PM|Crear equipo|Maestros|EQUI,EQUZ,ILOA","IE02|PM|Modificar equipo|Maestros|EQUI,EQUZ,ILOA","IE03|PM|Visualizar equipo|Maestros|EQUI,EQUZ,ILOA",
+"IL01|PM|Crear ubicación técnica|Maestros|IFLO,ILOA","IL03|PM|Visualizar ubicación técnica|Maestros|IFLO,ILOA",
+"IW21|PM|Crear aviso de mantenimiento|Mantenimiento|QMEL","IW22|PM|Modificar aviso de mantenimiento|Mantenimiento|QMEL","IW23|PM|Visualizar aviso de mantenimiento|Mantenimiento|QMEL",
+"IW31|PM|Crear orden de mantenimiento|Mantenimiento|AUFK,AFIH","IW32|PM|Modificar orden de mantenimiento|Mantenimiento|AUFK,AFIH","IW33|PM|Visualizar orden de mantenimiento|Mantenimiento|AUFK,AFIH",
+"IW38|PM|Lista de órdenes de mantenimiento|Mantenimiento|AUFK,AFIH",
+"QA01|QM|Crear lote de inspección|Calidad|QALS","QA02|QM|Modificar lote de inspección|Calidad|QALS","QA03|QM|Visualizar lote de inspección|Calidad|QALS",
+"QE01|QM|Registrar resultados|Calidad|QALS,QAMV","QA11|QM|Decisión de empleo|Calidad|QALS,QAVE","QA32|QM|Lista de lotes de inspección|Calidad|QALS","QM01|QM|Crear aviso de calidad|Calidad|QMEL",
+"SU01|IT|Mantenimiento de usuarios|Seguridad|USR02,USR21,USR04,AGR_USERS","SU01D|IT|Visualizar usuario|Seguridad|USR02,USR21,USR04,AGR_USERS","SU10|IT|Mantenimiento masivo de usuarios|Seguridad|USR02,USR04,AGR_USERS",
+"PFCG|IT|Mantenimiento de roles|Seguridad|AGR_DEFINE,AGR_1251,AGR_USERS,AGR_PROF|Ver el contenido de autorizaciones de un rol.","SUIM|IT|Sistema de información de autorizaciones|Seguridad|USR02,AGR_USERS,AGR_1251,CDHDR,CDPOS","SU21|IT|Objetos de autorización|Seguridad|TOBJ",
+"SU53|IT|Verificar autorizaciones faltantes|Seguridad|","SM19|IT|Configuración del Security Audit Log|Seguridad|","SM20|IT|Análisis del Security Audit Log|Seguridad|",
+"SM37|IT|Resumen de jobs de fondo|Administración|TBTCO,TBTCP","SM36|IT|Definir job de fondo|Administración|TBTCO,TBTCP","SM59|IT|Destinos RFC|Administración|RFCDES","SCC4|IT|Configuración de mandantes|Administración|T000",
+"SM21|IT|Log del sistema|Administración|","ST22|IT|Volcados ABAP (dumps)|Administración|","SM50|IT|Resumen de procesos|Administración|",
+"SE09|IT|Organizador de transportes|Transportes|E070,E071","SE10|IT|Organizador de transportes (customizing)|Transportes|E070,E071","STMS|IT|Sistema de gestión de transportes|Transportes|",
+"SE11|IT|Diccionario ABAP|Desarrollo|DD02L,DD03L|Ver la relación entre tablas.","SE16N|IT|Visualizar contenido de tablas|Desarrollo|DD02L,DD03L,SE16N_CD_KEY,SE16N_CD_DATA|Las modificaciones hechas con SE16N quedan en SE16N_CD_KEY y SE16N_CD_DATA.","SE38|IT|Editor ABAP|Desarrollo|TRDIR|Ver el código fuente de un programa. Comparar QA vs PRD: Utilidades › Versiones › Gestión de versiones › Traer versiones remotas (añadir PRD) › seleccionar líneas QA + PRD › Comparar reportes.","SE80|IT|Object Navigator|Desarrollo|TADIR,TRDIR","SE93|IT|Mantenimiento de códigos de transacción|Desarrollo|TSTC|Ver qué programa ejecuta una transacción.",
+"SE16|IT|Visualizar y descargar tablas|Desarrollo||Descargar y visualizar tablas.","SE51|IT|Screen Painter (dynpros)|Desarrollo||Vistas de campos de pantalla.",
+"SP02|IT|Spool: salida de jobs de fondo|Administración||Descargar la salida del pool de impresión de fondo.",
+"SWI2_FREQ|IT|Workflow: estado de work items|Workflow||Ver el estado del workflow: filtrar por SUB WF y nombre de task = WF, luego por ID de documento. Con LOG se ven los aprobadores.",
+"RSUSR200|IT|Reporte de logins de usuarios|Seguridad|USR02|Programa (se ejecuta con SA38 o SE38).",
+"PA20|HR|Visualizar datos maestros de HR|Maestros|PA0000,PA0001,PA0002,PA0008,PA0105","PA30|HR|Mantener datos maestros de HR|Maestros|PA0000,PA0001,PA0002,PA0008,PA0105","PA40|HR|Acciones de personal|Maestros|PA0000,PA0001"
+].map(s=>{const a=s.split("|");return{c:a[0],m:a[1],d:a[2],p:a[3],t:a[4].split(","),n:a[5]}});
+const IP={
+box:'<path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>',
+coin:'<circle cx="12" cy="12" r="9"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.4 0-2.5.7-2.5 1.8 0 2.6 5 1.4 5 4 0 1.1-1.1 1.9-2.5 1.9-1.1 0-2-.4-2.6-1.2M12 6v2M12 16v2"/>',
+book:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
+cart:'<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 8H6"/>',
+folder:'<path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+bldg:'<path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10l10-6 10 6z"/>',
+pie:'<path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/>',
+fact:'<path d="M2 21V11l6 4v-4l6 4V5h6v16z"/>',
+wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+check:'<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+server:'<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/>',
+scale:'<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3.5 3.5 0 0 0 6 0zM19 7l-3 7a3.5 3.5 0 0 0 6 0z"/>',
+people:'<circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14a5 5 0 0 1 5 5"/>'};
+
+const txOf=id=>TX.filter(t=>t.t.includes(id));
+const tabBlock=l=>l.map(x=>{const r=T.find(q=>q[0]===x);return r?`<div style="margin:6px 0"><a class="l" data-tab="${x}">${x}</a> <span class="mut">${r[2]}</span><br>${r[3].split(",").map(k=>`<span class="k">${k}</span>`).join("")}</div>`:""}).join("")||'<div class="mut" style="margin:6px 0">Sin tablas cargadas para esta transacción (puede leer logs, archivos o memoria).</div>';
+const joinsOf=l=>E.filter(e=>l.includes(e[0])&&l.includes(e[1])).map(e=>`<li>${e[0]} – ${e[1]} <span class="mut">vía ${e[2]}</span></li>`).join("");
+const txl=(l,sm)=>l.map(t=>`<a class="l" data-tx="${t.c}">${t.c}</a> <span class="mut">${sm?t.m+" · ":""}${t.d} · ${t.p}</span>`).join("<br>");
+const X=[48,238,418,598];
+const PROCS=["Maestros","P2P","Inventario","O2C","R2R","A2R","Costos","Producción","Mantenimiento","Calidad","Seguridad","Administración","Transportes","Desarrollo","Workflow"];
+// Notas por tabla (tus apuntes)
+const NOTES={
+USR02:"Lista de usuarios: creación, tipo, fecha de último logon y estado (bloqueado/activo). Campos obligatorios (tu lista): BNAME, UFLA, GLTGB, USTYP, CLASS, TRDAT.",
+ADRP:"Nombre y apellido por número personal. Campos obligatorios: PERSNUMBER, NAME_FIRST, NAME_LAST.",
+USR21:"Número personal de un usuario. Campos obligatorios: BNAME, PERSNUMBER.",
+USER_ADDRS:"Vista: nombre, apellido, ID de sistema y puesto.",
+V_USERNAME:"Vista: nombre y apellido vinculados a los ID de SAP.",
+USR04:"Fecha y hora de modificación de los perfiles otorgados a los usuarios.",
+UST04:"Asociación entre un perfil y un usuario. Campos obligatorios: BNAME, PROFILE.",
+UST10C:"Asociación de perfiles con sus perfiles hijos. Campos obligatorios: PROFN, SUBPROF.",
+UST10S:"Autorizaciones incluidas en cada perfil. Campos obligatorios: PROFN, OBJCT, AUTH.",
+UST12:"Detalle de autorizaciones. Campos obligatorios: OBJCT, AUTH, FIELD, VON, BIS.",
+USR11:"Descripción del perfil.",
+USR13:"Descripción de la autorización.",
+USR40:"Control de contraseñas.",
+AGR_USERS:"Asignación de roles a usuarios. Campos obligatorios: AGR_NAME, UNAME, TO_DAT.",
+AGR_PROF:"Correspondencia entre roles y perfiles. Campos obligatorios: PROFILE, AGR_NAME.",
+AGR_AGRS:"Roles compuestos.",
+AGR_1251:"Datos de autorización de un rol (grupo de actividades).",
+USOBT:"Objetos de autorización de una transacción (campo NAME).",
+USOBT_C:"Autorizaciones necesarias (transacción + objeto + valor) para una transacción dada (NAME = transacción).",
+DEVACCESS:"Usuarios con clave de desarrollador en el mandante.",
+DBTABLOG:"Log de cambios en las tablas.",
+DD02L:"Datos de tablas (SE11). CONTFLAG (C y G) y MAINFLAG = N indican, según su valor, si la tabla se puede modificar en PRD.",
+DD09L:"Indicador de log activo para tablas (PROTOCOL = X).",
+TDDAT:"Grupo de autorizaciones de la tabla.",
+D010TAB:"Relación programa ↔ tablas usadas en el programa (también en SE80, GET_TABLES).",
+D010INC:"Programas e includes que contienen.",
+TRDIR:"Permite ver la última modificación de un programa.",
+TSTC:"Transacciones.",
+TSTCP:"Parámetros de las transacciones.",
+T000:"Mandantes (clients) y sus datos.",
+TBTCO:"Estado de los jobs.",
+TBTCP:"Relación job ↔ programa.",
+CDHDR:"Log: permite ver qué usuarios usaron una transacción para modificar un dato de cabecera.",
+CDPOS:"Log: permite ver qué usuarios usaron una transacción para modificar un dato de posición.",
+SE16N_CD_KEY:"Log de modificaciones hechas con SE16N (junto con SE16N_CD_DATA).",
+SE16N_CD_DATA:"Log de modificaciones hechas con SE16N (junto con SE16N_CD_KEY).",
+TJ20:"Esquemas de status.",
+TJ30:"Esquemas de status: status de usuario.",
+MARM:"Unidades de medida del material.",
+T001:"Sociedades (company codes).",
+T003:"Clases de documento (document types).",
+T003T:"Textos de las clases de documento.",
+GRACRULESET:"Rulesets de GRC.",
+GRACSODRISK:"Riesgos de segregación de funciones.",
+GRACSODRISKRS:"Riesgos por ruleset.",
+GRACSODRISKFUNC:"Funciones que componen cada riesgo.",
+GRACFUNC:"Funciones. Plantilla Funciones.xlsx (encabezados válidos): Cod. Func, Transacción, Objeto, Campo, Valor desde, Valor hasta, Búsqueda, 0 = enabled / 1 = disabled.",
+GRACFUNCACT:"Acciones (transacciones) de cada función.",
+GRACFUNCPRM:"Permisos de la función (por ejemplo F_LFA1_GRP, S_TCODE), según tu captura.",
+GRACFFLOG:"Datos de logon de usuarios Firefighter (LOGON_TIME en formato YYYYMMDDhhmmss).",
+GRACFCHANGELOG:"Log de cambios de funciones (según el nombre de la tabla). Verificar la descripción en SE11.",
+GRACACTUSAGE:"Uso de acciones (transacciones) por usuario en GRC (según el nombre de la tabla). Verificar la descripción en SE11.",
+PA0001:"Asignación organizativa; incluye el puesto (PLANS). Junto con T528T relaciona el usuario SAP con el puesto de nómina.",
+PA0000:"Acciones de personal.",
+PA0002:"Datos personales.",
+PA0008:"Retribución básica.",
+PA0105:"Comunicación: el subtipo 0001 guarda el usuario SAP del empleado (USRID).",
+T528T:"Textos de los puestos (posiciones)."
+};
+// S/4HANA: tablas nuevas [id, módulo, desc, claves, padre, nota]
+const S4A=[
+["ACDOCA","FI","Universal Journal","RCLNT,RLDNR,RBUKRS,GJAHR,BELNR,DOCLN","BKPF","Tabla única de partidas: reúne FI, CO y activos fijos. Es la fuente principal para reportes."],
+["MATDOC","MM","Documentos de material","MANDT,MBLNR,MJAHR,ZEILE","MM","Une cabecera y posición (MKPF + MSEG) en una sola tabla."],
+["BUT000","MM","Business Partner (general)","MANDT,PARTNER","MM","Maestro único de clientes y proveedores (CVI). Obligatorio en S/4HANA."]
+];
+// S/4HANA: tablas reemplazadas o de compatibilidad (to = dónde pasan a leerse)
+const S4R={
+MKPF:{to:["MATDOC"],d:"→ MATDOC (compatibilidad)",n:"Reemplazada por MATDOC; queda como vista de compatibilidad."},
+MSEG:{to:["MATDOC"],d:"→ MATDOC (compatibilidad)",n:"Reemplazada por MATDOC; queda como vista de compatibilidad."},
+ANEP:{to:["ACDOCA"],d:"→ ACDOCA (compatibilidad)",n:"Los valores de activos fijos se guardan en ACDOCA; queda como vista de compatibilidad."},
+ANLC:{to:["ACDOCA"],d:"→ ACDOCA (compatibilidad)",n:"Los valores de activos fijos se guardan en ACDOCA; queda como vista de compatibilidad."},
+ANEK:{to:["BKPF","ACDOCA"],d:"→ BKPF + ACDOCA",n:"Sus datos se guardan en BKPF y ACDOCA."},
+COEP:{to:["ACDOCA"],d:"→ ACDOCA (parcial)",n:"Los importes reales (tipo de valor 04) están en ACDOCA; otros tipos de valor siguen en COEP, que se lee mediante una vista de compatibilidad."},
+BSEG:{to:["BSEG","ACDOCA"],d:"Fuente real: ACDOCA",n:"Sigue existiendo, pero las partidas se guardan en ACDOCA; para reportes conviene leer ACDOCA."},
+LFA1:{d:"Compat. · maestro: BUT000",n:"Se conserva por compatibilidad; el maestro es el Business Partner (BUT000), sincronizado vía CVI."},
+KNA1:{d:"Compat. · maestro: BUT000",n:"Se conserva por compatibilidad; el maestro es el Business Partner (BUT000), sincronizado vía CVI."},
+CSKA:{d:"Cuenta de mayor (FS00)",n:"Las clases de coste se crean como cuentas de mayor (FS00) y forman parte del plan de cuentas."}
+};
+const S4E=[["ACDOCA","BKPF","RBUKRS + BELNR + GJAHR"],["BUT000","LFA1","PARTNER (vía CVI)"],["BUT000","KNA1","PARTNER (vía CVI)"],["MATDOC","EKPO","EBELN + EBELP"],["MATDOC","MARA","MATNR"]];
+const S4OUT=["XK01","XK02","XK03","VD01","VD02","VD03"];
+function applySys(){
+ if(sys!=="s4"){T=T0;E=E0;TX=TX0;return}
+ T=[...T0,...S4A];E=[...E0,...S4E];
+ const mapT=l=>{const o=[];l.forEach(x=>((S4R[x]&&S4R[x].to)||[x]).forEach(y=>{if(!o.includes(y))o.push(y)}));return o};
+ TX=[...TX0.filter(t=>!S4OUT.includes(t.c)).map(t=>({...t,t:mapT(t.t)})),{c:"BP",m:"MM",d:"Business Partner: proveedor y cliente",p:"Maestros",t:["BUT000","LFA1","KNA1"]}]}
+const tdesc=id=>(T.find(r=>r[0]===id)||[])[2]||"";
+const svg=document.getElementById("s");
+let view="tab",N,kids,cur,hitSet=new Set(),q="";
+const by=id=>N.find(n=>n.id===id);
+function build(){
+  const tx=view==="tx",ROW=tx?42:46;
+  const mods=MODS.map(m=>({...m,mod:true,m:m.id,w:150,h:54,k:[]}));
+  let rest=[];
+  if(!tx)rest=T.map(a=>{const r=sys==="s4"&&S4R[a[0]];return{id:a[0],m:a[1],d:r?r.d:a[2],d0:a[2],k:a[3].split(","),p:a[4],w:140,h:38,r,nw:!!a[5],note:a[5]}});
+  else MODS.forEach(m=>PROCS.forEach(p=>{
+    const l=TX.filter(t=>t.m===m.id&&t.p===p);if(!l.length)return;
+    rest.push({id:m.id+"·"+p,t:p,pr:p,proc:true,m:m.id,d:l.length+" transacciones",k:[],p:m.id,w:140,h:36});
+    l.forEach(t=>rest.push({id:t.c,tx:true,m:m.id,d:t.d,k:[t.p,...t.t],p:m.id+"·"+p,w:140,h:36}))}));
+  N=[...mods,...rest];
+  const mk=()=>{kids={};N.forEach(n=>{if(n.p)(kids[n.p]=kids[n.p]||[]).push(n)})};mk();
+  hitSet=new Set();
+  const ql=q.trim().toLowerCase();
+  if(ql){
+    const txt=n=>(n.mod?n.id+" "+(n.lab||"")+" "+n.name+" "+n.d:n.proc?n.t+" "+n.id:n.tx?n.id+" "+n.d+" "+n.k.join(" ")+" "+((TX.find(t=>t.c===n.id)||{}).n||""):n.id+" "+(n.d0||n.d)+" "+n.k.join(" ")+" "+(NOTES[n.id]||"")+" "+txOf(n.id).map(t=>t.c+" "+t.d+" "+(t.n||"")).join(" ")).toLowerCase();
+    const down=n=>{(kids[n.id]||[]).forEach(k=>{hitSet.add(k.id);down(k)})};
+    N.forEach(n=>{if(txt(n).includes(ql)){hitSet.add(n.id);down(n);let a=n.p?by(n.p):null;while(a){hitSet.add(a.id);a=a.p?by(a.p):null}}});
+    Object.values(kids).forEach(l=>l.sort((a,b)=>(hitSet.has(a.id)?0:1)-(hitSet.has(b.id)?0:1)));
+  }
+  cur=34;
+  const lay=(n,d)=>{const c=kids[n.id]||[];n.x=X[d];
+    if(!c.length){n.cy=cur;cur+=ROW}else{c.forEach(k=>lay(k,d+1));n.cy=(c[0].cy+c[c.length-1].cy)/2}};
+  [...MODS].sort((a,b)=>(hitSet.has(a.id)?0:1)-(hitSet.has(b.id)?0:1)).forEach(m=>{const mn=by(m.id);if(mn){lay(mn,0);cur+=18}});
+  svg.setAttribute("viewBox",`0 0 762 ${Math.max(cur,120)}`)}
+function setView(v){if(v===view)return;view=v;sel=null;build();document.querySelectorAll(".chip[data-v]").forEach(c=>c.classList.toggle("on",c.dataset.v===v))}
+function setSys(s){if(s===sys)return;sys=s;sel=null;applySys();build();document.querySelectorAll(".chip[data-s]").forEach(c=>c.classList.toggle("on",c.dataset.s===s))}
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function ensure(id){if(!by(id)){q="";document.getElementById("q").value="";build()}}
+let sys="ecc",T=T0,E=E0,TX=TX0;
+build();
+const isTree=(a,b)=>by(a).p===b||by(b).p===a;
+const col=m=>`var(--${m.toLowerCase()})`;
+let sel=null,mod="ALL",proc="";
+function path(a,b,same){
+  if(a.x===b.x){const x=a.x,ya=a.cy,yb=b.cy;return `M${x},${ya} C${x-34},${ya} ${x-34},${yb} ${x},${yb}`}
+  if(a.x>b.x)[a,b]=[b,a];
+  const x1=a.x+a.w,x2=b.x,mid=(x1+x2)/2;
+  return `M${x1},${a.cy} C${mid},${a.cy} ${mid},${b.cy} ${x2},${b.cy}`}
+function adj(id){
+  const n=by(id);
+  if(n.mod)return N.filter(t=>t.m===id).map(t=>t.id);
+  const r=E.filter(e=>e[0]===id||e[1]===id).map(e=>e[0]===id?e[1]:e[0]);
+  if(n.p)r.push(n.p);const dsc=x=>(kids[x]||[]).forEach(k=>{r.push(k.id);dsc(k.id)});dsc(id);return r}
+function draw(){
+  const rel=sel?[sel,...adj(sel)]:null,soft0=q.trim().length>0;
+  document.getElementById("qx").style.display=soft0?"flex":"none";
+  let h="";
+  N.filter(n=>n.p).forEach(n=>{const p=by(n.p),hi=sel&&(sel===n.id||sel===p.id||(by(sel).mod&&by(sel).id===n.m));
+    h+=`<path class="e${hi?" hi":""}" d="${path(p,n)}"/>`});
+  if(sel&&!by(sel).mod)E.filter(e=>(e[0]===sel||e[1]===sel)&&by(e[0])&&by(e[1])&&!isTree(e[0],e[1])).forEach(e=>{h+=`<path class="e x" d="${path(by(e[0]),by(e[1]))}"/>`});
+  h+=N.map(n=>{
+    const dim=rel?!rel.includes(n.id):(soft0&&!hitSet.has(n.id));
+    const y=n.cy-n.h/2,cx=n.x+n.w/2;
+    const txt=n.mod?`<svg x="${n.x-34}" y="${n.cy-13}" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="${col(n.m)}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IP[n.i]}</svg><text class="t" x="${cx}" y="${y+23}" style="font-size:17px;fill:${col(n.m)}">${n.lab||n.id}</text><text class="d" x="${cx}" y="${y+40}" style="font-size:10px">${n.d}</text>`
+      :`<text class="t" x="${cx}" y="${y+16}">${n.t||n.id}</text><text class="d" x="${cx}" y="${y+30}">${n.d.length>27?n.d.slice(0,26)+"…":n.d}</text>`;
+    return `<g class="n${n.id===sel?" sel":""}" data-id="${n.id}" opacity="${dim?.15:1}"><rect x="${n.x}" y="${y}" width="${n.w}" height="${n.h}" rx="${n.mod?12:8}" stroke="${col(n.m)}" stroke-width="${n.mod?3:2}"${n.r?' stroke-dasharray="5 3"':""}/>${txt}</g>`}).join("");
+  const nr=document.getElementById("nores");
+  if(soft0&&hitSet.size===0){nr.style.display="block";nr.textContent="Sin resultados para “"+q.trim()+"”"}else nr.style.display="none";
+  svg.innerHTML=h;
+  const pan=document.getElementById("det"),d=document.getElementById("dc");
+  pan.classList.toggle("on",!!sel);if(!sel)return;
+  const n=by(sel);
+  if(n.proc){const L=TX.filter(t=>t.m===n.m&&t.p===n.pr),tb=[...new Set(L.flatMap(t=>t.t))];d.innerHTML=`<b style="color:${col(n.m)}">${n.m}</b> · <b>${n.t}</b> <span class="mut">· ${L.length} transacciones</span><div style="margin-top:8px"><span class="mut">Tablas del proceso:</span>${tabBlock(tb)}</div>`;return}
+  if(n.tx){const t=TX.find(x=>x.c===n.id),j=joinsOf(t.t);d.innerHTML=`<b style="color:${col(n.m)}">${t.m}</b> · <b>${t.c}</b> – ${t.d} <span class="mut">· ${t.p}</span>${t.n?`<div style="margin-top:8px">${t.n}</div>`:""}<div style="margin-top:8px"><span class="mut">Tablas que usa:</span>${tabBlock(t.t)}</div>${j?`<div><span class="mut">Uniones entre ellas:</span><ul style="margin:4px 0 0;padding-left:20px">${j}</ul></div>`:""}`;return}
+  if(n.mod&&view==="tx"){const tb=T.filter(r=>r[1]===n.id).map(r=>r[0]);d.innerHTML=`<b style="color:${col(n.m)}">${n.id}</b> · <b>${n.name}</b> <span class="mut">– ${n.d}</span><div class="mut" style="margin-top:6px">${TX.filter(t=>t.m===n.id).length} transacciones</div><div style="margin-top:8px"><span class="mut">Tablas del módulo:</span>${tabBlock(tb)}</div>`;return}
+  if(n.mod){
+    d.innerHTML=`<b style="color:${col(n.m)}">${n.id}</b> · <b>${n.name}</b> <span class="mut">– ${n.d}</span><div style="margin-top:8px"><span class="mut">Tablas:</span><br>${N.filter(t=>t.m===n.id&&!t.mod).map(t=>`<a class="l" data-go="${t.id}">${t.id}</a> <span class="mut">${t.d}</span>`).join("<br>")}</div><div style="margin-top:8px"><span class="mut">Transacciones:</span><br>${txl(TX.filter(t=>t.m===n.id))}</div>`;return}
+  const rl=E.filter(e=>e[0]===sel||e[1]===sel).map(e=>{const o=e[0]===sel?e[1]:e[0];return `<li><a class="l" data-go="${o}">${o}</a> <span class="mut">vía ${e[2]}</span></li>`}).join("");
+  d.innerHTML=`<a class="l" data-go="${n.m}" style="color:${col(n.m)}">${n.m}</a> · <b>${n.id}</b> – ${n.d0||n.d}${n.r?`<div class="mut" style="margin:8px 0;padding:8px 10px;border:1px dashed var(--bd);border-radius:8px">S/4HANA: ${n.r.n}</div>`:n.nw?`<div class="mut" style="margin:8px 0;padding:8px 10px;border:1px dashed var(--bd);border-radius:8px">${n.note}</div>`:""}${NOTES[n.id]?`<div style="margin:8px 0">${NOTES[n.id]}</div>`:""}<div style="margin:8px 0"><span class="mut">Campos clave:</span><br>${n.k.map(k=>`<span class="k">${k}</span>`).join("")}</div><span class="mut">Se une con:</span><ul style="margin:4px 0 0;padding-left:20px">${rl}</ul><div style="margin-top:8px"><span class="mut">Transacciones:</span><br>${txl(txOf(n.id),0)||'<span class="mut">–</span>'}<div class="mut" style="margin-top:4px">Ver datos crudos: SE16N · estructura: SE11</div></div>`;
+}
+document.querySelector(".map").onclick=e=>{const g=e.target.closest(".n");sel=g&&g.dataset.id!==sel?g.dataset.id:null;draw()};
+document.getElementById("det").onclick=e=>{const a=e.target.closest("[data-go]"),x=e.target.closest("[data-tx]"),tb=e.target.closest("[data-tab]");
+ if(tb){setView("tab");ensure(tb.dataset.tab);sel=tb.dataset.tab;draw()}
+ else if(a){ensure(a.dataset.go);sel=a.dataset.go;draw()}
+ else if(x){if(view==="tx"){ensure(x.dataset.tx);sel=x.dataset.tx;draw()}else{q=x.dataset.tx;document.getElementById("q").value=q;sel=null;build();draw()}}};
+document.getElementById("dx").onclick=()=>{sel=null;draw()};
+document.onkeydown=e=>{if(e.key==="Escape"){sel=null;draw()}};
+document.getElementById("q").oninput=e=>{q=e.target.value;build();document.querySelector(".map").scrollTop=0;draw()};
+document.getElementById("qx").onclick=()=>{q="";const i=document.getElementById("q");i.value="";build();document.querySelector(".map").scrollTop=0;draw();i.focus()};
+document.querySelectorAll(".chip[data-v]").forEach(b=>b.onclick=()=>{setView(b.dataset.v);draw()});
+document.querySelectorAll(".chip[data-s]").forEach(b=>b.onclick=()=>{setSys(b.dataset.s);draw()});
+
+draw();
+</script>
+</body>
+</html>

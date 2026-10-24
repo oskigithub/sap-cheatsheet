@@ -1,17 +1,20 @@
 <!doctype html>
 <html lang="es">
 <head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Crect%20width=%22100%22%20height=%22100%22%20rx=%2222%22%20fill=%22%230f172a%22/%3E%3Cg%20stroke=%22%2338bdf8%22%20stroke-width=%225%22%20fill=%22none%22%20stroke-linecap=%22round%22%3E%3Cpath%20d=%22M26%2050H44M44%2050C58%2050%2056%2028%2070%2028M44%2050C58%2050%2056%2072%2070%2072%22/%3E%3C/g%3E%3Crect%20x=%2212%22%20y=%2240%22%20width=%2220%22%20height=%2220%22%20rx=%225%22%20fill=%22%2338bdf8%22/%3E%3Crect%20x=%2266%22%20y=%2219%22%20width=%2222%22%20height=%2218%22%20rx=%225%22%20fill=%22%23fff%22/%3E%3Crect%20x=%2266%22%20y=%2263%22%20width=%2222%22%20height=%2218%22%20rx=%225%22%20fill=%22%23fff%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SAP CheatSheet</title>
 <style>
-:root{--bg:#f4f5f7;--fg:#111827;--mut:#6b7280;--card:#fff;--bd:#d5d9df;--sb:#c3c9d1;--mm:#2563eb;--sd:#16a34a;--fi:#d97706;--aa:#7c3aed;--co:#0891b2;--pp:#dc2626;--pm:#db2777;--qm:#65a30d;--it:#475569;--grc:#0d9488;--hr:#4f46e5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d10;--fg:#e8eaed;--mut:#98a2ae;--card:#13161b;--bd:#262b33;--sb:#394049;--mm:#60a5fa;--sd:#4ade80;--fi:#fbbf24;--aa:#a78bfa;--co:#22d3ee;--pp:#f87171;--pm:#f472b6;--qm:#a3e635;--it:#94a3b8;--grc:#2dd4bf;--hr:#818cf8}}
-:root[data-theme="dark"]{--bg:#0b0d10;--fg:#e8eaed;--mut:#98a2ae;--card:#13161b;--bd:#262b33;--sb:#394049;--mm:#60a5fa;--sd:#4ade80;--fi:#fbbf24;--aa:#a78bfa;--co:#22d3ee;--pp:#f87171;--pm:#f472b6;--qm:#a3e635;--it:#94a3b8;--grc:#2dd4bf;--hr:#818cf8}
+:root{--bg:#f4f5f7;--fg:#111827;--mut:#6b7280;--card:#fff;--bd:#d5d9df;--sb:#c3c9d1;--mm:#d97706;--sd:#16a34a;--fi:#2563eb;--aa:#dc2626;--co:#0891b2;--pp:#7c3aed;--pm:#db2777;--qm:#65a30d;--it:#1e6f8c;--grc:#0d9488;--hr:#4f46e5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d10;--fg:#e8eaed;--mut:#98a2ae;--card:#13161b;--bd:#262b33;--sb:#394049;--mm:#fbbf24;--sd:#4ade80;--fi:#60a5fa;--aa:#f87171;--co:#22d3ee;--pp:#a78bfa;--pm:#f472b6;--qm:#a3e635;--it:#5fb4d1;--grc:#2dd4bf;--hr:#818cf8}}
+:root[data-theme="dark"]{--bg:#0b0d10;--fg:#e8eaed;--mut:#98a2ae;--card:#13161b;--bd:#262b33;--sb:#394049;--mm:#fbbf24;--sd:#4ade80;--fi:#60a5fa;--aa:#f87171;--co:#22d3ee;--pp:#a78bfa;--pm:#f472b6;--qm:#a3e635;--it:#5fb4d1;--grc:#2dd4bf;--hr:#818cf8}
 *{box-sizing:border-box}
-body{margin:0 auto;max-width:1360px;background:var(--bg);color:var(--fg);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;padding:12px 24px;height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px}
+body{margin:0 auto;max-width:1632px;background:var(--bg);color:var(--fg);font:15px/1.4 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding:12px 24px;height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px}
 h1{font-size:18px;margin:0}
-.sep{width:1px;background:var(--bd);margin:0 4px;align-self:stretch}
+.sep{width:4px;height:4px;border-radius:50%;background:var(--mut);opacity:.7;margin:0 6px;align-self:center;flex:none}
 .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
 .bar{display:flex;flex:1 1 360px;flex-wrap:wrap;gap:8px}
 .frame{position:relative;flex:1;min-height:0;display:flex;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden}
@@ -23,18 +26,32 @@ h1{font-size:18px;margin:0}
 input{width:100%;padding:8px 34px 8px 34px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);font:inherit}
 button.chip{padding:6px 12px;border:1px solid var(--bd);border-radius:999px;background:var(--card);color:var(--fg);font:inherit;cursor:pointer}
 button.chip.on{background:var(--fg);color:var(--bg)}
-.map{flex:1;min-width:0;overflow:auto;padding-right:340px;scrollbar-width:thin;scrollbar-color:var(--sb) transparent}
+.map{flex:1;min-width:0;overflow:auto;display:flex;flex-direction:column;padding:var(--py,0px) calc(340px + var(--px,0px)) var(--py,0px) var(--px,0px);scrollbar-width:thin;scrollbar-color:var(--sb) transparent}
 .map::-webkit-scrollbar,#det::-webkit-scrollbar{width:10px;height:10px}
 .map::-webkit-scrollbar-track,#det::-webkit-scrollbar-track,.map::-webkit-scrollbar-corner{background:transparent}
 .map::-webkit-scrollbar-thumb,#det::-webkit-scrollbar-thumb{background:var(--sb);border-radius:999px;border:3px solid transparent;background-clip:content-box}
 .map::-webkit-scrollbar-thumb:hover,#det::-webkit-scrollbar-thumb:hover{background:var(--mut);background-clip:content-box}
-#s{display:block;margin:0 48px 0 auto;width:762px;max-width:none;height:auto}
-.n{cursor:pointer;transition:opacity .15s}
+#s{flex:none;display:block;margin:auto;width:762px;max-width:none;height:auto}
+#s{touch-action:pan-x pan-y}#s.panning{cursor:grabbing}
+#zc{display:flex;align-items:center;gap:5px;opacity:.4;transition:opacity .15s}
+#zc:hover,#zc:focus-within,#zc.act{opacity:1}
+#zc button{border:1px solid var(--bd);background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.12);color:var(--fg);font:inherit;font-size:12px;line-height:1;cursor:pointer;height:18px;min-width:18px;padding:0 6px;border-radius:999px}
+#zc button:hover{background:var(--bg)}
+#zo,#zi{width:18px;padding:0!important}
+#zc button:disabled{opacity:.35;cursor:default;background:var(--card)}
+#zr{min-width:46px;font-size:12px;font-variant-numeric:tabular-nums}
+.legal{flex:none;display:block;margin:0;padding:28px 0 12px 16px;font-size:12px;color:var(--mut)}
+.n{cursor:grab;transition:opacity .15s;user-select:none;-webkit-user-select:none}
+#s.dragging,#s.dragging .n{cursor:grabbing}
 .n rect{fill:var(--card)}
 .n text{fill:var(--fg);text-anchor:middle}
 .n .t{font-weight:700;font-size:13px}
+.n text{font-family:inherit}
 .n .d{fill:var(--mut);font-size:9px}
 .n.sel rect{fill:var(--bd)}
+/* Fondo de nodos: tinte suave del módulo; más intenso al pasar el mouse o seleccionar */
+.n rect{transition:fill .12s}
+.n.c rect{fill:color-mix(in srgb,var(--c) 7%,var(--card))}.n.c:hover rect{fill:color-mix(in srgb,var(--c) 20%,var(--card))}.n.c.sel rect{fill:color-mix(in srgb,var(--c) 28%,var(--card))}
 .e{fill:none;stroke:var(--bd);stroke-width:1.5}
 .e.hi{stroke:var(--fg);stroke-width:2.5}
 .e.x{stroke:var(--fg);stroke-width:2;stroke-dasharray:5 4}
@@ -52,14 +69,16 @@ a.l{color:inherit;font-weight:600;cursor:pointer;text-decoration:underline}
 <div class="top"><h1>SAP CheatSheet</h1>
 <div class="bar">
   <label class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" placeholder="Buscar módulo, tabla, transacción o campo (ej: BELNR, ME21N)"><button id="qx" type="button" aria-label="Borrar búsqueda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></label>
+  <span class="sep"></span>
   <button class="chip on" data-v="tab">Tablas</button>
   <button class="chip" data-v="tx">Transacciones</button>
+  <button class="chip" data-v="ctl">Controles</button>
   <span class="sep"></span>
-  <button class="chip on" data-s="ecc">ECC</button>
-  <button class="chip" data-s="s4">S/4HANA</button>
+  <button class="chip on" data-s="s4">S/4HANA</button>
+  <button class="chip" data-s="ecc">ECC</button>
 </div></div>
-<div class="frame"><div class="map"><svg id="s"></svg></div><div id="nores"></div><div id="det"><button id="dx" aria-label="Cerrar">×</button><div id="dc"></div></div></div>
-<div class="mut" id="ver" style="font-size:12px;margin:0;display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap"><span>SAP es marca registrada de SAP SE.</span><span>Versión 1.0 · 19/10/2026</span></div>
+<div class="frame"><div class="map"><svg id="s"></svg><div class="legal">SAP es marca registrada de SAP SE.</div></div><div id="nores"></div><div id="det"><button id="dx" aria-label="Cerrar">×</button><div id="dc"></div></div></div>
+<div class="mut" id="ver" style="font-size:12px;margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px"><div id="zc"><button id="zo" aria-label="Alejar" title="Alejar">−</button><button id="zr" title="Volver a 100%">100%</button><button id="zi" aria-label="Acercar" title="Acercar">+</button></div><span>Versión 1.1 · 24/10/2026</span></div>
 <script>
 const MODS=[
 {id:"IT",name:"IT / BASIS",lab:"IT / BASIS",d:"Seguridad y administración",i:"server"},
@@ -268,6 +287,27 @@ const TX0=[
 "SP02|IT|Spool: salida de jobs de fondo|Administración||Descargar la salida del pool de impresión de fondo.",
 "SWI2_FREQ|IT|Workflow: estado de work items|Workflow||Ver el estado del workflow: filtrar por SUB WF y nombre de task = WF, luego por ID de documento. Con LOG se ven los aprobadores.",
 "RSUSR200|IT|Reporte de logins de usuarios|Seguridad|USR02|Programa (se ejecuta con SA38 o SE38).",
+"NWBC|GRC|Portal NetWeaver Business Client (GRC Access Control)|Acceso GRC||Entrada al portal de GRC: solicitudes de acceso, reportes y logs. Estándar de SAP NetWeaver.",
+"/GRCPI/GRIA_EAM|GRC|Launchpad EAM: usar un Firefighter ID aprobado|Acceso GRC|GRACFFLOG|Entrada para usar un FF ID (motivo + aprobación del controller). Reemplaza a GRAC_SPM (obsoleta).",
+"GRAC_EAM|GRC|Launchpad EAM: usar un Firefighter ID|Acceso GRC|GRACFFLOG|Puede variar o no existir según la versión de GRC.",
+"/GRCPI/GRIA_GRC_LOG|GRC|GRC Change Log|Logs GRC|GRACFCHANGELOG",
+"GRAC_SPM_LOG_SYNC|GRC|Sincronizar logs de Firefighter (SPM)|Logs GRC|GRACFFLOG|Puede variar o no existir según la versión de GRC.",
+"GRAC_SPM_SYNC|GRC|Sincronizar datos maestros de SPM|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRAC_SPM_WF_SYNC|GRC|Sincronizar workflow de SPM|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRAC_ACT_USAGE_SYNC|GRC|Sincronizar uso de acciones|Acceso GRC|GRACACTUSAGE|Puede variar o no existir según la versión de GRC.",
+"GRAC_ROLE_USAGE_SYNC|GRC|Sincronizar uso de roles|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRAC_GENERATE_RULES|GRC|Generar reglas de riesgo|Acceso GRC|GRACSODRISKRS|Puede variar o no existir según la versión de GRC.",
+"GRAC_BATCH_RA|GRC|Análisis de riesgos en batch|Acceso GRC|GRACSODRISK|Puede variar o no existir según la versión de GRC.",
+"GRACRABATCH_MONITOR|GRC|Monitor del análisis de riesgos batch|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRAC_UPLOAD_RULES|GRC|Subir reglas de acceso|Acceso GRC|GRACRULESET|Puede variar o no existir según la versión de GRC.",
+"GRAC_DOWNLOAD_RULES|GRC|Bajar reglas de acceso|Acceso GRC|GRACRULESET|Puede variar o no existir según la versión de GRC.",
+"GRAC_RULE_TRANSPORT|GRC|Transportar reglas de acceso|Acceso GRC|GRACRULESET|Puede variar o no existir según la versión de GRC.",
+"GRAC_USER_SYNC|GRC|Sincronizar usuarios|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRAC_ROLE_SYNC|GRC|Sincronizar roles|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRAC_AUTH_SYNC|GRC|Sincronizar autorizaciones|Acceso GRC||Puede variar o no existir según la versión de GRC.",
+"GRPCRTA_CHANGELOGGRC|GRC|Captura del Change Log de GRC|Logs GRC||Puede variar o no existir según la versión de GRC.",
+"GRFN_LOG_ENABLE|GRC|Activar logging de aplicación de GRC|Logs GRC||Puede variar o no existir según la versión de GRC.",
+"GRFNMW_MONITOR|GRC|Monitor de workflow (MSMP)|Logs GRC||Puede variar o no existir según la versión de GRC.",
 "PA20|HR|Visualizar datos maestros de HR|Maestros|PA0000,PA0001,PA0002,PA0008,PA0105","PA30|HR|Mantener datos maestros de HR|Maestros|PA0000,PA0001,PA0002,PA0008,PA0105","PA40|HR|Acciones de personal|Maestros|PA0000,PA0001"
 ].map(s=>{const a=s.split("|");return{c:a[0],m:a[1],d:a[2],p:a[3],t:a[4].split(","),n:a[5]}});
 const IP={
@@ -290,7 +330,7 @@ const tabBlock=l=>l.map(x=>{const r=T.find(q=>q[0]===x);return r?`<div style="ma
 const joinsOf=l=>E.filter(e=>l.includes(e[0])&&l.includes(e[1])).map(e=>`<li>${e[0]} – ${e[1]} <span class="mut">vía ${e[2]}</span></li>`).join("");
 const txl=(l,sm)=>l.map(t=>`<a class="l" data-tx="${t.c}">${t.c}</a> <span class="mut">${sm?t.m+" · ":""}${t.d} · ${t.p}</span>`).join("<br>");
 const X=[48,238,418,598];
-const PROCS=["Maestros","P2P","Inventario","O2C","R2R","A2R","Costos","Producción","Mantenimiento","Calidad","Seguridad","Administración","Transportes","Desarrollo","Workflow"];
+const PROCS=["Maestros","P2P","Inventario","O2C","R2R","A2R","Costos","Producción","Mantenimiento","Calidad","Seguridad","Administración","Transportes","Desarrollo","Workflow","Acceso GRC","Logs GRC"];
 // Notas por tabla (tus apuntes)
 const NOTES={
 USR02:"Lista de usuarios: creación, tipo, fecha de último logon y estado (bloqueado/activo). Campos obligatorios (tu lista): BNAME, UFLA, GLTGB, USTYP, CLASS, TRDAT.",
@@ -378,19 +418,56 @@ function applySys(){
  T=[...T0,...S4A];E=[...E0,...S4E];
  const mapT=l=>{const o=[];l.forEach(x=>((S4R[x]&&S4R[x].to)||[x]).forEach(y=>{if(!o.includes(y))o.push(y)}));return o};
  TX=[...TX0.filter(t=>!S4OUT.includes(t.c)).map(t=>({...t,t:mapT(t.t)})),{c:"BP",m:"MM",d:"Business Partner: proveedor y cliente",p:"Maestros",t:["BUT000","LFA1","KNA1"]}]}
+/* CONTROLES estándar: cada control = raíz → Qué revisar / Tablas / Configuración / Transacciones.
+   Ítems: [código, descripción, claves (solo si la tabla no está en el mapa), nota] */
+const CTL=[
+{id:"CT·3WM",lab:"3-Way Match",name:"Conciliación pedido – entrada de mercancía – factura",d:"Pedido, EM y factura",m:"MM",
+ rev:["Posición con WEPOS + WEBRE + REPOS activos en EKPO = 3-way match por posición.",
+  "Tolerancias por clave y sociedad en OMR6 (familia T169, p. ej. T169G); si se exceden, la factura se bloquea.",
+  "Motivos de bloqueo en RSEG (por ejemplo SPGRP precio, SPGRM cantidad, SPGRT fecha); se liberan con MRBR.",
+  "Comparar cantidad recibida vs. facturada en EKBE (VGABE 1 = entrada de mercancía, 2 = factura).",
+  "Cambios en tolerancias: revisar el log de tablas (DBTABLOG / SE16N_CD) si está activado.",
+  "Confirmar los nombres exactos de tablas y campos en SE11 según la versión."],
+ tabs:[["T169G","Tolerancias de verificación de facturas","ver SE11","Configuración preventiva automática: tolerancias de verificación de facturas (OMR6). Familia T169: confirmar nombre y claves exactas en SE11."]]},
+{id:"CT·REL",lab:"Liberación OC",name:"Estrategia de liberación de pedidos de compra",d:"Quién aprueba según valor",m:"MM",
+ rev:["La estrategia se determina por la clase de tipo 032 con características de la estructura CEKKO (valor neto, grupo de compras, tipo de documento).",
+  "Estado de la OC en EKKO: FRGGR (grupo), FRGSX (estrategia), FRGKE (indicador) y FRGZU (estado de liberación).",
+  "Aprobadores: ME23N → liberación (códigos y estado); los códigos se definen en T16FC.",
+  "Cambios de valor después de liberar pueden reiniciar la liberación: revisar CDHDR/CDPOS.",
+  "Quién puede liberar: autorizaciones del objeto M_EINK_FRG (revisar con SUIM).",
+  "Confirmar tablas y transacciones en SE11/SE93 según la versión."],
+ tabs:[["T16FG","Grupos de liberación","ver SE11","Configuración de la estrategia de liberación. Confirmar claves exactas en SE11."],
+  ["T16FS","Estrategias de liberación","MANDT,FRGGR,FRGSX","Define qué códigos de liberación aplican a cada estrategia."],
+  ["T16FC","Códigos de liberación","MANDT,FRGGR,FRGCO","Códigos (niveles de aprobación) por grupo."]]}
+];
+const ctlOf=id=>CTL.find(c=>c.id===id);
+const ctlMods=()=>MODS.filter(m=>CTL.some(c=>c.m===m.id));
+function ctlNodes(){
+  const r=[];
+  CTL.forEach(c=>{
+    r.push({id:c.id,t:c.lab,ctlN:true,m:c.m,d:c.d,k:[c.lab,c.name,c.d,...c.rev],p:c.m,w:150,h:38});
+    c.tabs.forEach(it=>r.push({id:c.id+"|"+it[0],t:it[0],cl:true,cid:c.id,ref:it[0],m:c.m,d:it[1],keys:it[2],note:it[3],k:[it[0],it[1],it[3]||""],p:c.id,w:190,h:36}))});
+  return r}
+function ctlDetail(n){
+  const c=ctlOf(n.ctlN?n.id:n.cid),hd=`<b style="color:${col(c.m)}">${c.lab}</b>`,ul=l=>`<ul style="margin:6px 0 0 18px;padding:0">${l.map(x=>`<li style="margin-bottom:4px">${x}</li>`).join("")}</ul>`;
+  if(n.ctlN)return `${hd} · <b>${c.name}</b> <span class="mut">– ${c.d}</span><div style="margin-top:8px"><span class="mut">Qué revisar:</span>${ul(c.rev)}</div><div style="margin-top:10px"><span class="mut">Tablas de configuración:</span><br>${c.tabs.map(x=>`<a class="l" data-go="${c.id}|${x[0]}">${x[0]}</a> <span class="mut">${x[1]}</span>`).join("<br>")}</div>`;
+  const head=`${hd} · <b>${n.ref}</b> – ${n.d}`,note=n.note?`<div style="margin-top:8px">${n.note}</div>`:"";
+  if(T.find(r=>r[0]===n.ref))return `${head}${note}<div style="margin-top:8px"><span class="mut">Tabla:</span>${tabBlock([n.ref])}</div>`;
+  return `${head}${note}<div style="margin-top:8px"><span class="mut">Claves:</span><br>${(n.keys||"ver SE11").split(",").map(k=>`<span class="k">${k}</span>`).join("")}</div><div class="mut" style="margin-top:8px">Tabla no incluida en el mapa por módulo; verificar en SE11.</div>`}
 const tdesc=id=>(T.find(r=>r[0]===id)||[])[2]||"";
 const svg=document.getElementById("s");
 let view="tab",N,kids,cur,hitSet=new Set(),q="";
 const by=id=>N.find(n=>n.id===id);
 function build(){
   const tx=view==="tx",ROW=tx?42:46;
-  const mods=MODS.map(m=>({...m,mod:true,m:m.id,w:150,h:54,k:[]}));
+  const ctl=view==="ctl";
+  const mods=(ctl?ctlMods():MODS).map(m=>({...m,mod:true,m:m.id,w:150,h:54,k:[]}));
   let rest=[];
-  if(!tx)rest=T.map(a=>{const r=sys==="s4"&&S4R[a[0]];return{id:a[0],m:a[1],d:r?r.d:a[2],d0:a[2],k:a[3].split(","),p:a[4],w:140,h:38,r,nw:!!a[5],note:a[5]}});
+  if(ctl)rest=ctlNodes();else if(!tx)rest=T.map(a=>{const r=sys==="s4"&&S4R[a[0]];return{id:a[0],m:a[1],d:r?r.d:a[2],d0:a[2],k:a[3].split(","),p:a[4],w:140,h:38,r,nw:!!a[5],note:a[5]}});
   else MODS.forEach(m=>PROCS.forEach(p=>{
     const l=TX.filter(t=>t.m===m.id&&t.p===p);if(!l.length)return;
     rest.push({id:m.id+"·"+p,t:p,pr:p,proc:true,m:m.id,d:l.length+" transacciones",k:[],p:m.id,w:140,h:36});
-    l.forEach(t=>rest.push({id:t.c,tx:true,m:m.id,d:t.d,k:[t.p,...t.t],p:m.id+"·"+p,w:140,h:36}))}));
+    l.forEach(t=>rest.push({id:t.c,tx:true,m:m.id,d:t.d,k:[t.p,...t.t],p:m.id+"·"+p,w:t.m==="GRC"?190:140,h:36}))}));
   N=[...mods,...rest];
   const mk=()=>{kids={};N.forEach(n=>{if(n.p)(kids[n.p]=kids[n.p]||[]).push(n)})};mk();
   hitSet=new Set();
@@ -404,20 +481,30 @@ function build(){
   cur=34;
   const lay=(n,d)=>{const c=kids[n.id]||[];n.x=X[d];
     if(!c.length){n.cy=cur;cur+=ROW}else{c.forEach(k=>lay(k,d+1));n.cy=(c[0].cy+c[c.length-1].cy)/2}};
-  [...MODS].sort((a,b)=>(hitSet.has(a.id)?0:1)-(hitSet.has(b.id)?0:1)).forEach(m=>{const mn=by(m.id);if(mn){lay(mn,0);cur+=18}});
+  [...(ctl?ctlMods():MODS)].sort((a,b)=>(hitSet.has(a.id)?0:1)-(hitSet.has(b.id)?0:1)).forEach(m=>{const mn=by(m.id);if(mn){lay(mn,0);cur+=18}});
   svg.setAttribute("viewBox",`0 0 762 ${Math.max(cur,120)}`)}
 function setView(v){if(v===view)return;view=v;sel=null;build();document.querySelectorAll(".chip[data-v]").forEach(c=>c.classList.toggle("on",c.dataset.v===v))}
 function setSys(s){if(s===sys)return;sys=s;sel=null;applySys();build();document.querySelectorAll(".chip[data-s]").forEach(c=>c.classList.toggle("on",c.dataset.s===s))}
 const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 function ensure(id){if(!by(id)){q="";document.getElementById("q").value="";build()}}
-let sys="ecc",T=T0,E=E0,TX=TX0;
-build();
+let sys="s4",T=T0,E=E0,TX=TX0;
+applySys();build();
 const isTree=(a,b)=>by(a).p===b||by(b).p===a;
 const col=m=>`var(--${m.toLowerCase()})`;
 let sel=null,mod="ALL",proc="";
-function path(a,b,same){
-  if(a.x===b.x){const x=a.x,ya=a.cy,yb=b.cy;return `M${x},${ya} C${x-34},${ya} ${x-34},${yb} ${x},${yb}`}
-  if(a.x>b.x)[a,b]=[b,a];
+const MAXD=40;           // desplazamiento máximo de un nodo al arrastrarlo (px)
+let ELASTIC=true;        // true = el nodo vuelve a su lugar al soltarlo
+const OFF={};            // posiciones movidas por el usuario: id -> [dx,dy]
+function clampOff(n,dx,dy){
+  const m=Math.hypot(dx,dy);if(m>MAXD){dx*=MAXD/m;dy*=MAXD/m}
+  const vb=svg.viewBox.baseVal,l=n.mod?n.x-34:n.x,r=n.x+n.w,t=n.cy-n.h/2,b=n.cy+n.h/2;
+  return [Math.max(2-l,Math.min(vb.width-2-r,dx)),Math.max(2-t,Math.min(vb.height-2-b,dy))]}
+const seen={};const stk={};           // desplazamiento vertical del nodo de módulo al hacer scroll (siempre visible)
+const off=n=>{const o=OFF[n.id],u=o?clampOff(n,o[0],o[1]):[0,0];return [u[0],u[1]+(stk[n.id]||0)]};
+const sh=n=>{const o=off(n);return{x:n.x+o[0],cy:n.cy+o[1],w:n.w,c:n.x}};
+function path(a,b){
+  if(a.c===b.c){const x=a.x,ya=a.cy,yb=b.cy;return `M${x},${ya} C${x-34},${ya} ${x-34},${yb} ${x},${yb}`}
+  if(a.c>b.c)[a,b]=[b,a];
   const x1=a.x+a.w,x2=b.x,mid=(x1+x2)/2;
   return `M${x1},${a.cy} C${mid},${a.cy} ${mid},${b.cy} ${x2},${b.cy}`}
 function adj(id){
@@ -430,20 +517,22 @@ function draw(){
   document.getElementById("qx").style.display=soft0?"flex":"none";
   let h="";
   N.filter(n=>n.p).forEach(n=>{const p=by(n.p),hi=sel&&(sel===n.id||sel===p.id||(by(sel).mod&&by(sel).id===n.m));
-    h+=`<path class="e${hi?" hi":""}" d="${path(p,n)}"/>`});
-  if(sel&&!by(sel).mod)E.filter(e=>(e[0]===sel||e[1]===sel)&&by(e[0])&&by(e[1])&&!isTree(e[0],e[1])).forEach(e=>{h+=`<path class="e x" d="${path(by(e[0]),by(e[1]))}"/>`});
+    h+=`<path class="e${hi?" hi":""}" data-a="${p.id}" data-b="${n.id}" d="${path(sh(p),sh(n))}"/>`});
+  if(sel&&!by(sel).mod)E.filter(e=>(e[0]===sel||e[1]===sel)&&by(e[0])&&by(e[1])&&!isTree(e[0],e[1])).forEach(e=>{h+=`<path class="e x" data-a="${e[0]}" data-b="${e[1]}" d="${path(sh(by(e[0])),sh(by(e[1])))}"/>`});
   h+=N.map(n=>{
     const dim=rel?!rel.includes(n.id):(soft0&&!hitSet.has(n.id));
     const y=n.cy-n.h/2,cx=n.x+n.w/2;
     const txt=n.mod?`<svg x="${n.x-34}" y="${n.cy-13}" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="${col(n.m)}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IP[n.i]}</svg><text class="t" x="${cx}" y="${y+23}" style="font-size:17px;fill:${col(n.m)}">${n.lab||n.id}</text><text class="d" x="${cx}" y="${y+40}" style="font-size:10px">${n.d}</text>`
       :`<text class="t" x="${cx}" y="${y+16}">${n.t||n.id}</text><text class="d" x="${cx}" y="${y+30}">${n.d.length>27?n.d.slice(0,26)+"…":n.d}</text>`;
-    return `<g class="n${n.id===sel?" sel":""}" data-id="${n.id}" opacity="${dim?.15:1}"><rect x="${n.x}" y="${y}" width="${n.w}" height="${n.h}" rx="${n.mod?12:8}" stroke="${col(n.m)}" stroke-width="${n.mod?3:2}"${n.r?' stroke-dasharray="5 3"':""}/>${txt}</g>`}).join("");
+    const o=off(n);return `<g class="n c${n.id===sel?" sel":""}" style="--c:${col(n.m)}" data-id="${n.id}" opacity="${dim?.15:1}"${o[0]||o[1]?` transform="translate(${o[0]},${o[1]})"`:""}><rect x="${n.x}" y="${y}" width="${n.w}" height="${n.h}" rx="${n.mod?12:8}" stroke="${col(n.m)}" stroke-width="${n.mod?3:2}"${n.r?' stroke-dasharray="5 3"':""}/>${txt}</g>`}).join("");
   const nr=document.getElementById("nores");
   if(soft0&&hitSet.size===0){nr.style.display="block";nr.textContent="Sin resultados para “"+q.trim()+"”"}else nr.style.display="none";
-  svg.innerHTML=h;
+  svg.innerHTML=h;updStick();
   const pan=document.getElementById("det"),d=document.getElementById("dc");
   pan.classList.toggle("on",!!sel);if(!sel)return;
   const n=by(sel);
+  if(n.ctlN||n.cl){d.innerHTML=ctlDetail(n);return}
+  if(n.mod&&view==="ctl"){d.innerHTML=`<b style="color:${col(n.m)}">${n.id}</b> · <b>${n.name}</b> <span class="mut">– ${n.d}</span><div style="margin-top:8px"><span class="mut">Controles:</span><br>${CTL.filter(c=>c.m===n.id).map(c=>`<a class="l" data-go="${c.id}">${c.lab}</a> <span class="mut">${c.d}</span>`).join("<br>")}</div>`;return}
   if(n.proc){const L=TX.filter(t=>t.m===n.m&&t.p===n.pr),tb=[...new Set(L.flatMap(t=>t.t))];d.innerHTML=`<b style="color:${col(n.m)}">${n.m}</b> · <b>${n.t}</b> <span class="mut">· ${L.length} transacciones</span><div style="margin-top:8px"><span class="mut">Tablas del proceso:</span>${tabBlock(tb)}</div>`;return}
   if(n.tx){const t=TX.find(x=>x.c===n.id),j=joinsOf(t.t);d.innerHTML=`<b style="color:${col(n.m)}">${t.m}</b> · <b>${t.c}</b> – ${t.d} <span class="mut">· ${t.p}</span>${t.n?`<div style="margin-top:8px">${t.n}</div>`:""}<div style="margin-top:8px"><span class="mut">Tablas que usa:</span>${tabBlock(t.t)}</div>${j?`<div><span class="mut">Uniones entre ellas:</span><ul style="margin:4px 0 0;padding-left:20px">${j}</ul></div>`:""}`;return}
   if(n.mod&&view==="tx"){const tb=T.filter(r=>r[1]===n.id).map(r=>r[0]);d.innerHTML=`<b style="color:${col(n.m)}">${n.id}</b> · <b>${n.name}</b> <span class="mut">– ${n.d}</span><div class="mut" style="margin-top:6px">${TX.filter(t=>t.m===n.id).length} transacciones</div><div style="margin-top:8px"><span class="mut">Tablas del módulo:</span>${tabBlock(tb)}</div>`;return}
@@ -452,7 +541,93 @@ function draw(){
   const rl=E.filter(e=>e[0]===sel||e[1]===sel).map(e=>{const o=e[0]===sel?e[1]:e[0];return `<li><a class="l" data-go="${o}">${o}</a> <span class="mut">vía ${e[2]}</span></li>`}).join("");
   d.innerHTML=`<a class="l" data-go="${n.m}" style="color:${col(n.m)}">${n.m}</a> · <b>${n.id}</b> – ${n.d0||n.d}${n.r?`<div class="mut" style="margin:8px 0;padding:8px 10px;border:1px dashed var(--bd);border-radius:8px">S/4HANA: ${n.r.n}</div>`:n.nw?`<div class="mut" style="margin:8px 0;padding:8px 10px;border:1px dashed var(--bd);border-radius:8px">${n.note}</div>`:""}${NOTES[n.id]?`<div style="margin:8px 0">${NOTES[n.id]}</div>`:""}<div style="margin:8px 0"><span class="mut">Campos clave:</span><br>${n.k.map(k=>`<span class="k">${k}</span>`).join("")}</div><span class="mut">Se une con:</span><ul style="margin:4px 0 0;padding-left:20px">${rl}</ul><div style="margin-top:8px"><span class="mut">Transacciones:</span><br>${txl(txOf(n.id),0)||'<span class="mut">–</span>'}<div class="mut" style="margin-top:4px">Ver datos crudos: SE16N · estructura: SE11</div></div>`;
 }
-document.querySelector(".map").onclick=e=>{const g=e.target.closest(".n");sel=g&&g.dataset.id!==sel?g.dataset.id:null;draw()};
+const mapEl=document.querySelector(".map");
+/* El nodo del módulo acompaña el scroll: queda siempre en pantalla dentro de su propio bloque */
+function updStick(){
+  if(!N||!kids)return;
+  const mr=mapEl.getBoundingClientRect(),r=svg.getBoundingClientRect(),zk=r.width/762||1,vt=(mr.top-r.top)/zk,vb=(mr.bottom-r.top)/zk,pad=Math.min(36,(vb-vt)*.07),gap=pad;
+  N.filter(n=>n.mod).forEach(n=>{
+    let t=n.cy-n.h/2,b=n.cy+n.h/2;(function w(x){(kids[x.id]||[]).forEach(c=>{t=Math.min(t,c.cy-c.h/2);b=Math.max(b,c.cy+c.h/2);w(c)})})(n);
+    const h2=n.h/2,top=vt+h2+gap,bot=vb-h2-gap;   /* empieza a moverse al acercarse al borde (gap), no al tocarlo */
+    /* se queda en su lugar mientras se vea; solo cuando empieza a salir se va corriendo hacia adentro (hasta "pad") */
+    if(n.cy>=top&&n.cy<=bot)seen[n.id]=1;else if(b<vt||t>vb)seen[n.id]=0;   /* solo acompaña si ya se vio en su lugar */
+    let want=!seen[n.id]?n.cy:n.cy<top?top+Math.min(top-n.cy,pad):n.cy>bot?bot-Math.min(n.cy-bot,pad):n.cy;want=Math.max(t+h2,Math.min(b-h2,want));
+    const d=want-n.cy;if(Math.abs((stk[n.id]||0)-d)>.5){stk[n.id]=d;moveLive(n.id)}})}
+let stkQ=0;mapEl.addEventListener("scroll",()=>{if(!stkQ)stkQ=requestAnimationFrame(()=>{stkQ=0;updStick()})},{passive:true});
+window.addEventListener("resize",()=>updStick());
+let drag=null,wasDrag=false;
+function moveLive(id){
+  const n=by(id);if(!n)return;
+  const o=off(n),g=svg.querySelector(`.n[data-id="${id}"]`);
+  if(g){if(o[0]||o[1])g.setAttribute("transform",`translate(${o[0]},${o[1]})`);else g.removeAttribute("transform")}
+  svg.querySelectorAll(`path[data-a="${id}"],path[data-b="${id}"]`).forEach(p=>{const a=by(p.dataset.a),b=by(p.dataset.b);if(a&&b)p.setAttribute("d",path(sh(a),sh(b)))})}
+function spring(id){
+  const o=OFF[id];if(!o)return;const a=[o[0],o[1]],t0=performance.now();
+  const step=t=>{const p=Math.min(1,(t-t0)/180),k=1-Math.pow(1-p,3);
+    if(p<1){OFF[id]=[a[0]*(1-k),a[1]*(1-k)];moveLive(id);requestAnimationFrame(step)}else{delete OFF[id];moveLive(id)}};
+  requestAnimationFrame(step)}
+/* ZOOM: Ctrl+rueda (o pellizco en pantallas táctiles); arrastrar el fondo para mover */
+let Z=1;const zr=document.getElementById("zr");
+function setZ(z,cx,cy){
+  z=Math.max(.5,Math.min(3,z));if(Math.abs(z-Z)<.001)return;
+  const r=svg.getBoundingClientRect(),ux=(cx-r.left)/r.width,uy=(cy-r.top)/r.height;
+  Z=z;svg.style.width=(762*Z)+"px";
+  /* margen extra para poder mover el diagrama más allá de los bordes cuando hay zoom */
+  mapEl.style.setProperty("--px",Z>1.01?"160px":"0px");mapEl.style.setProperty("--py",Z>1.01?"120px":"0px");
+  const q=svg.getBoundingClientRect();
+  mapEl.scrollLeft+=q.left+ux*q.width-cx;mapEl.scrollTop+=q.top+uy*q.height-cy;
+  updStick();zr.textContent=Math.round(Z*100)+"%";
+  document.getElementById("zc").classList.toggle("act",Math.abs(Z-1)>=.01);
+  document.getElementById("zo").disabled=Z<=.5+.001;document.getElementById("zi").disabled=Z>=3-.001}
+const zctr=()=>{const r=mapEl.getBoundingClientRect();return[r.left+(r.width-340)/2,r.top+r.height/2]};
+document.getElementById("zi").onclick=()=>setZ(Z*1.25,...zctr());
+document.getElementById("zo").onclick=()=>setZ(Z/1.25,...zctr());
+zr.onclick=()=>{const r=mapEl.getBoundingClientRect();setZ(1,r.left+r.width/2,r.top+r.height/2)};
+mapEl.addEventListener("wheel",e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();setZ(Z*Math.exp(-e.deltaY*(e.deltaMode?.05:.0015)),e.clientX,e.clientY)},{passive:false});
+const ptrs=new Map();let pinch=null,pan=null;
+svg.addEventListener("pointerdown",e=>{
+  if(e.pointerType==="touch"){ptrs.set(e.pointerId,[e.clientX,e.clientY]);if(ptrs.size===2){const[a,b]=[...ptrs.values()];pinch={d:Math.hypot(a[0]-b[0],a[1]-b[1]),z:Z};drag=null;wasDrag=true}}
+  
+},true);
+mapEl.addEventListener("pointerdown",e=>{
+  if(e.pointerType==="touch"||e.button!==0||e.target.closest(".n,.legal,#zc"))return;
+  if(e.target===mapEl&&(e.offsetX>mapEl.clientWidth||e.offsetY>mapEl.clientHeight))return; /* barra de scroll */
+  pan={x:e.clientX,y:e.clientY,l:mapEl.scrollLeft,t:mapEl.scrollTop,moved:false}},true);
+svg.addEventListener("pointermove",e=>{
+  if(ptrs.has(e.pointerId)){ptrs.set(e.pointerId,[e.clientX,e.clientY]);if(pinch&&ptrs.size===2){const[a,b]=[...ptrs.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]);setZ(pinch.z*d/pinch.d,(a[0]+b[0])/2,(a[1]+b[1])/2)}}
+});
+window.addEventListener("pointermove",e=>{
+  if(!pan)return;const dx=e.clientX-pan.x,dy=e.clientY-pan.y;
+  if(!pan.moved){if(Math.hypot(dx,dy)<5)return;pan.moved=true;wasDrag=true;svg.classList.add("panning")}
+  /* eje con desplazamiento: scroll; eje sin desplazamiento: se mueve con margen y vuelve solo */
+  const ox=mapEl.scrollWidth>mapEl.clientWidth+1,oy=mapEl.scrollHeight>mapEl.clientHeight+1,M=60,el=v=>M*Math.tanh(v/M);
+  if(ox)mapEl.scrollLeft=pan.l-dx;if(oy)mapEl.scrollTop=pan.t-dy;
+  if(!ox||!oy){svg.style.transition="none";svg.style.transform=`translate(${ox?0:el(dx)}px,${oy?0:el(dy)}px)`}});
+const endPan=e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinch=null;if(pan){if(pan.moved&&svg.style.transform){svg.style.transition="transform .3s cubic-bezier(.2,.8,.2,1)";svg.style.transform=""}pan=null;svg.classList.remove("panning")}};
+window.addEventListener("pointerup",endPan);window.addEventListener("pointercancel",endPan);
+svg.addEventListener("pointerdown",e=>{
+  wasDrag=!!pinch;if(e.button!==0)return;
+  const g=e.target.closest(".n");if(!g||!by(g.dataset.id))return;
+  const o=OFF[g.dataset.id]||[0,0],r=svg.getBoundingClientRect();
+  drag={id:g.dataset.id,x0:e.clientX,y0:e.clientY,o0:[o[0],o[1]],k:svg.viewBox.baseVal.width/r.width,moved:false,pid:e.pointerId}});
+window.addEventListener("pointermove",e=>{
+  if(!drag||e.pointerId!==drag.pid)return;
+  const dx=e.clientX-drag.x0,dy=e.clientY-drag.y0;
+  if(!drag.moved){if(Math.hypot(dx,dy)<5)return;drag.moved=true;wasDrag=true;svg.classList.add("dragging")}
+  OFF[drag.id]=clampOff(by(drag.id),drag.o0[0]+dx*drag.k,drag.o0[1]+dy*drag.k);
+  moveLive(drag.id)});
+const endDrag=e=>{
+  if(!drag||(e&&e.pointerId!==undefined&&e.pointerId!==drag.pid))return;
+  const d=drag;drag=null;svg.classList.remove("dragging");
+  if(d.moved&&ELASTIC)spring(d.id)};
+window.addEventListener("pointerup",endDrag);
+window.addEventListener("pointercancel",endDrag);
+window.addEventListener("blur",()=>endDrag());
+let lastClk={id:null,t:0};
+mapEl.onclick=e=>{if(wasDrag)return;const g=e.target.closest(".n"),id=g&&g.dataset.id,now=performance.now();
+  if(id&&OFF[id]&&lastClk.id===id&&now-lastClk.t<400){delete OFF[id];lastClk={id:null,t:0};sel=null;draw();return}
+  lastClk={id,t:now};
+  sel=g&&id!==sel?id:null;draw()};
 document.getElementById("det").onclick=e=>{const a=e.target.closest("[data-go]"),x=e.target.closest("[data-tx]"),tb=e.target.closest("[data-tab]");
  if(tb){setView("tab");ensure(tb.dataset.tab);sel=tb.dataset.tab;draw()}
  else if(a){ensure(a.dataset.go);sel=a.dataset.go;draw()}
